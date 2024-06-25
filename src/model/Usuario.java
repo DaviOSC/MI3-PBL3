@@ -1,6 +1,7 @@
 package model;
 
 public abstract class Usuario {
+    private String login;
     private String nome;
     private String senha;
     private FormaPagamento formaPagamento;
