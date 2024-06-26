@@ -1,8 +1,8 @@
 package model;
 
 public class Roupa extends Produto {
-    public Roupa(String nome, double preco, int quantidade) {
-        super(nome, preco, quantidade);
+    public Roupa(String nome, double preco, String descricao) {
+        super(nome, preco, descricao);
     }
 
     @Override

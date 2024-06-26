@@ -3,12 +3,12 @@ package model;
 public abstract class Produto {
     private String nome;
     private double preco;
-    private int quantidade;
+    private String descricao;
 
-    public Produto(String nome, double preco, int quantidade) {
+    public Produto(String nome, double preco, String descricao) {
         this.nome = nome;
         this.preco = preco;
-        this.quantidade = quantidade;
+        this.descricao = descricao;
     }
 
     public String getNome() {
@@ -19,13 +19,10 @@ public abstract class Produto {
         return preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public String getDescricao() {
+        return descricao;
     }
 
     public abstract String getTipoProduto();
 }
+

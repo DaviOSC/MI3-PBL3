@@ -1,8 +1,8 @@
 package model;
 
 public class Alimento extends Produto {
-    public Alimento(String nome, double preco, int quantidade) {
-        super(nome, preco, quantidade);
+    public Alimento(String nome, double preco, String descricao) {
+        super(nome, preco, descricao);
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Estoque {
     private static Estoque instancia;
-    private Map<String, Produto> produtos;
+    private Map<Produto, Integer> produtos;
 
     private Estoque() {
         produtos = new HashMap<>();
@@ -19,23 +19,19 @@ public class Estoque {
     }
 
     // Adiciona um produto ao estoque. Se o produto já existe, incrementa a quantidade.
-    public void adicionarProduto(Produto produto) {
-        if (produtos.containsKey(produto.getNome())) {
-            Produto p = produtos.get(produto.getNome());
-            p.setQuantidade(p.getQuantidade() + produto.getQuantidade());
-        } else {
-            produtos.put(produto.getNome(), produto);
-        }
+    public void adicionarProduto(Produto produto, int quantidade) {
+        produtos.put(produto, produtos.getOrDefault(produto, 0) + quantidade);
     }
 
     // Remove uma quantidade específica de um produto do estoque.
-    public void removerProduto(String nomeProduto, int quantidade) {
-        if (produtos.containsKey(nomeProduto)) {
-            Produto p = produtos.get(nomeProduto);
-            if (p.getQuantidade() >= quantidade) {
-                p.setQuantidade(p.getQuantidade() - quantidade);
-                if (p.getQuantidade() == 0) {
-                    produtos.remove(nomeProduto);
+    public void removerProduto(Produto produto, int quantidade) {
+        if (produtos.containsKey(produto)) {
+            int quantidadeAtual = produtos.get(produto);
+            if (quantidadeAtual >= quantidade) {
+                if (quantidadeAtual == quantidade) {
+                    produtos.remove(produto);
+                } else {
+                    produtos.put(produto, quantidadeAtual - quantidade);
                 }
             } else {
                 throw new IllegalArgumentException("Quantidade insuficiente em estoque");
@@ -46,16 +42,12 @@ public class Estoque {
     }
 
     // Retorna a quantidade disponível de um produto específico no estoque.
-    public int getQuantidadeProduto(String nomeProduto) {
-        if (produtos.containsKey(nomeProduto)) {
-            return produtos.get(nomeProduto).getQuantidade();
-        } else {
-            throw new IllegalArgumentException("Produto não encontrado no estoque");
-        }
+    public int getQuantidadeProduto(Produto produto) {
+        return produtos.getOrDefault(produto, 0);
     }
 
     // Lista todos os produtos no estoque.
-    public Map<String, Produto> listarProdutos() {
+    public Map<Produto, Integer> listarProdutos() {
         return produtos;
     }
 }
