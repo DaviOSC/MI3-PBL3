@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Pedido {
+public class Pedido
+{
     public static final int NOVO = 0;
     public static final int PROCESSANDO = 1;
     public static final int ENVIADO = 2;
@@ -23,19 +24,23 @@ public class Pedido {
     }
 
     // Retorna um Iterator para todos os itens do pedido
-    public Iterator<Map.Entry<Produto, Integer>> listarItens() {
+    public Iterator<Map.Entry<Produto, Integer>> listarItens()
+    {
         return itens.entrySet().iterator();
     }
 
-    public double getPrecoTotal() {
+    public double getPrecoTotal()
+    {
         return precoTotal;
     }
 
-    public int getEstado() {
+    public int getEstado()
+    {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(int estado)
+    {
         this.estado = estado;
     }
 }
