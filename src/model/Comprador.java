@@ -7,7 +7,7 @@ public class Comprador extends Usuario {
 
     @Override
     public String getTipoUsuario() {
-        return "Comrador";
+        return "Corador";
     }
 }
 
