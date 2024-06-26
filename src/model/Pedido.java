@@ -5,15 +5,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Pedido {
-    public static final String NOVO = "Novo";
-    public static final String PROCESSANDO = "Processando";
-    public static final String ENVIADO = "Enviado";
-    public static final String ENTREGUE = "Entregue";
+    public static final int NOVO = 0;
+    public static final int PROCESSANDO = 1;
+    public static final int ENVIADO = 2;
+    public static final int ENTREGUE = 3;
 
     private Map<Produto, Integer> itens;
     private Map<Produto, Double> precosTotaisPorProduto;
     private double precoTotal;
-    private String estado;
+    private int estado;
 
     public Pedido(Carrinho carrinho, Estoque estoque) {
         this.itens = new HashMap<>();
@@ -31,11 +31,11 @@ public class Pedido {
         return precoTotal;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }
