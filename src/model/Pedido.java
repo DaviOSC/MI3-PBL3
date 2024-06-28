@@ -13,6 +13,7 @@ public class Pedido
 
     private Map<Produto, Integer> itens;
     private Map<Produto, Double> precosTotaisPorProduto;
+    //Fazer um retorno em Carinho para retonar valor total por produto.
     private double precoTotal;
     private int estado;
 
@@ -26,7 +27,6 @@ public class Pedido
     // Retorna um Iterator para todos os itens do pedido
     public Iterator<Map.Entry<Produto, Integer>> listarItens()
     {
-        System.out.println("eu:"+ itens.toString());
         return itens.entrySet().iterator();
     }
 

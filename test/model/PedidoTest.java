@@ -50,10 +50,8 @@ public class PedidoTest {
         assertEquals(expectedTotal1, pedido1.getPrecoTotal(), 0.01);
 
         // Verifica os itens do pedido
-        System.out.println(pedido1.listarItens());
         Iterator<Map.Entry<Produto, Integer>> itensIterator = pedido1.listarItens();
         int itemCount = 0;
-        System.out.println(itensIterator.hasNext());
         while (itensIterator.hasNext()) {
             itemCount++;
             Map.Entry<Produto, Integer> entry = itensIterator.next();
