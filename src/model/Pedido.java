@@ -17,15 +17,16 @@ public class Pedido
     private int estado;
 
     public Pedido(Carrinho carrinho, Estoque estoque) {
-        this.itens = new HashMap<>();
+        this.itens = carrinho.listaProdutos();
         this.precosTotaisPorProduto = new HashMap<>();
-        this.precoTotal = 0.0;
+        this.precoTotal = carrinho.getPrecoTotal();
         this.estado = NOVO;
     }
 
     // Retorna um Iterator para todos os itens do pedido
     public Iterator<Map.Entry<Produto, Integer>> listarItens()
     {
+        System.out.println("eu:"+ itens.toString());
         return itens.entrySet().iterator();
     }
 

@@ -70,5 +70,21 @@ public class Carrinho
     public Iterator<Map.Entry<Produto, Integer>> listarProdutos() {
         return produtosNoCarrinho.entrySet().iterator();
     }
+
+    // Método para calcular o preço total do carrinho
+    public double getPrecoTotal() {
+        double precoTotal = 0.0;
+        for (Map.Entry<Produto, Integer> entry : produtosNoCarrinho.entrySet()) {
+            Produto produto = entry.getKey();
+            int quantidade = entry.getValue();
+            precoTotal += produto.getPreco() * quantidade;
+        }
+        return precoTotal;
+    }
+
+    public Map<Produto, Integer> listaProdutos()
+    {
+        return this.produtosNoCarrinho;
+    }
 }
     
