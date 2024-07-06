@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -19,11 +21,20 @@ public class GerenciamentoDePedidosTest {
 
     @Before
     public void setUp() {
+        // Limpar o estoque antes de cada teste
         estoque = Estoque.getInstancia();
+        List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
+        for (Produto produto : produtosParaRemover) {
+            estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
+        }
+
         estoque.adicionarProduto(produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração"), 10);
         estoque.adicionarProduto(produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão"), 20);
-        
+
         carrinho = new Carrinho(estoque);
+
+        // Redefinir a instância de GerenciamentoDePedidos
+        GerenciamentoDePedidos.resetInstancia();
         gerenciamentoDePedidos = GerenciamentoDePedidos.getInstancia();
     }
 
@@ -35,8 +46,6 @@ public class GerenciamentoDePedidosTest {
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
 
         assertNotNull(pedido);
-        System.out.println(gerenciamentoDePedidos.listarPedidos().toString());
-        System.out.println(pedido.toString());
         assertEquals(1, gerenciamentoDePedidos.listarPedidos().size());
         assertEquals(pedido, gerenciamentoDePedidos.listarPedidos().get(0));
         assertEquals(Pedido.NOVO, pedido.getEstado());
@@ -55,7 +64,7 @@ public class GerenciamentoDePedidosTest {
                 assertTrue("Produto desconhecido encontrado no pedido", false);
             }
         }
-        
+
         assertEquals(8, estoque.getQuantidadeProduto(produto1));
         assertEquals(17, estoque.getQuantidadeProduto(produto2));
     }
@@ -63,13 +72,12 @@ public class GerenciamentoDePedidosTest {
     @Test
     public void testListarPedidos() {
         carrinho.adicionarProduto(produto1, 2);
+        carrinho.adicionarProduto(produto2, 3);
         Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
-        System.out.println(pedido1.toString());
-        
 
         carrinho.adicionarProduto(produto2, 3);
         Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
-        System.out.println(pedido2.toString());
+
         assertEquals(2, gerenciamentoDePedidos.listarPedidos().size());
         assertEquals(pedido1, gerenciamentoDePedidos.listarPedidos().get(0));
         assertEquals(pedido2, gerenciamentoDePedidos.listarPedidos().get(1));

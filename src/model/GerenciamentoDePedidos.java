@@ -10,7 +10,7 @@ public class GerenciamentoDePedidos
     private static GerenciamentoDePedidos instancia;
     private List<Pedido> pedidos;
 
-    private GerenciamentoDePedidos()
+    public GerenciamentoDePedidos()
     {
         pedidos = new ArrayList<>();
     }
@@ -22,6 +22,10 @@ public class GerenciamentoDePedidos
             instancia = new GerenciamentoDePedidos();
         }
         return instancia;
+    }
+
+    public static void resetInstancia() {
+        instancia = null;
     }
 
     public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
