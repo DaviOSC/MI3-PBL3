@@ -26,7 +26,7 @@ public class GerenciamentoDePedidos
 
     public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
     {
-        Pedido pedido = new Pedido(carrinho, estoque);
+        
         Iterator<Map.Entry<Produto, Integer>> iterator = carrinho.listarProdutos();
         while (iterator.hasNext()) {
             Map.Entry<Produto, Integer> entry = iterator.next();
@@ -35,12 +35,18 @@ public class GerenciamentoDePedidos
 
             estoque.removerProduto(produto, quantidade);
         }
-
-        pedidos.add(pedido);
-        return pedido;
+        if(carrinho.listaProdutos().size() != 0)
+        {
+            Pedido pedido = new Pedido(carrinho, estoque);
+            pedidos.add(pedido);
+            return pedido;
+        }
+        else
+            return null;
+        
     }
 
     public List<Pedido> listarPedidos() {
-        return new ArrayList<>(pedidos);
+        return pedidos;
     }
 }

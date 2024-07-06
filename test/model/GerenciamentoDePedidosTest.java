@@ -36,6 +36,7 @@ public class GerenciamentoDePedidosTest {
 
         assertNotNull(pedido);
         System.out.println(gerenciamentoDePedidos.listarPedidos().toString());
+        System.out.println(pedido.toString());
         assertEquals(1, gerenciamentoDePedidos.listarPedidos().size());
         assertEquals(pedido, gerenciamentoDePedidos.listarPedidos().get(0));
         assertEquals(Pedido.NOVO, pedido.getEstado());
@@ -63,10 +64,12 @@ public class GerenciamentoDePedidosTest {
     public void testListarPedidos() {
         carrinho.adicionarProduto(produto1, 2);
         Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        System.out.println(pedido1.toString());
+        
 
         carrinho.adicionarProduto(produto2, 3);
         Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
-
+        System.out.println(pedido2.toString());
         assertEquals(2, gerenciamentoDePedidos.listarPedidos().size());
         assertEquals(pedido1, gerenciamentoDePedidos.listarPedidos().get(0));
         assertEquals(pedido2, gerenciamentoDePedidos.listarPedidos().get(1));
