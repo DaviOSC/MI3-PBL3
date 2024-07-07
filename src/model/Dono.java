@@ -1,8 +1,8 @@
 package model;
 
 public class Dono extends Usuario {
-    public Dono(String nome, String senha, FormaPagamento formaPagamento) {
-        super(nome, senha, formaPagamento);
+    public Dono(String nome, String senha) {
+        super(nome, senha);
     }
 
     @Override

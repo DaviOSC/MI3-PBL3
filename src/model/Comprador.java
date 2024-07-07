@@ -6,8 +6,8 @@ import java.util.Map;
 public class Comprador extends Usuario {
     public Map<String, Pagamento> metodosPagamentos = new HashMap<>();
     
-    public Comprador(String nome, String senha, FormaPagamento formaPagamento) {
-        super(nome, senha, formaPagamento);
+    public Comprador(String nome, String senha) {
+        super(nome, senha);
     }
 
     @Override

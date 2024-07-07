@@ -1,12 +1,12 @@
 package model;
 
 public class UsuarioFactory {
-    public static Usuario criarUsuario(String tipo, String nome, String senha, FormaPagamento formaPagamento) {
+    public static Usuario criarUsuario(String tipo, String nome, String senha) {
         switch (tipo) {
             case "Dono":
-                return new Dono(nome, senha, formaPagamento);
+                return new Dono(nome, senha);
             case "Comprador":
-                return new Comprador(nome, senha, formaPagamento);
+                return new Comprador(nome, senha);
             default:
                 throw new IllegalArgumentException("Tipo de usuário desconhecido");
         }
