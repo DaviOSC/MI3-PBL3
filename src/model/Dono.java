@@ -9,4 +9,12 @@ public class Dono extends Usuario {
     public String getTipoUsuario() {
         return "Dono";
     }
+
+    public void adicionarProdutoEmEstoque(Estoque estoque, Produto produto, int quantidade) {
+        estoque.adicionarProduto(produto, quantidade);
+    }
+
+    public void removerProdutoDoEstoque(Estoque estoque, Produto produto, int quantidade) {
+        estoque.removerProduto(produto, quantidade);
+    }
 }

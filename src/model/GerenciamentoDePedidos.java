@@ -28,6 +28,10 @@ public class GerenciamentoDePedidos
         instancia = null;
     }
 
+    public Carrinho criarCarrinho(Estoque estoque) {
+        return new Carrinho(estoque);
+    }
+
     public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
     {
         
@@ -48,6 +52,14 @@ public class GerenciamentoDePedidos
         else
             return null;
         
+    }
+
+    public void finalizarPedido(Pedido pedido) {
+        if (pedido.getEstado() != Pedido.ENTREGUE) {
+            pedido.setEstado(Pedido.ENTREGUE);
+        } else {
+            throw new IllegalArgumentException("Pedido já está finalizado");
+        }
     }
 
     public List<Pedido> listarPedidos() {

@@ -14,32 +14,23 @@ import org.junit.Test;
 
 public class GerenciamentoDePedidosTest {
     private Estoque estoque;
-    private Carrinho carrinho;
+    private GerenciamentoDePedidos gerenciamentoDePedidos;
     private Produto produto1;
     private Produto produto2;
-    private GerenciamentoDePedidos gerenciamentoDePedidos;
 
     @Before
     public void setUp() {
-        // Limpar o estoque antes de cada teste
         estoque = Estoque.getInstancia();
-        List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
-        for (Produto produto : produtosParaRemover) {
-            estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
-        }
-
         estoque.adicionarProduto(produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração"), 10);
         estoque.adicionarProduto(produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão"), 20);
 
-        carrinho = new Carrinho(estoque);
-
-        // Redefinir a instância de GerenciamentoDePedidos
         GerenciamentoDePedidos.resetInstancia();
         gerenciamentoDePedidos = GerenciamentoDePedidos.getInstancia();
     }
 
     @Test
     public void testCriarPedido() {
+        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
         carrinho.adicionarProduto(produto1, 2);
         carrinho.adicionarProduto(produto2, 3);
 
@@ -69,17 +60,48 @@ public class GerenciamentoDePedidosTest {
         assertEquals(17, estoque.getQuantidadeProduto(produto2));
     }
 
+    // @Test(expected = IllegalArgumentException.class)
+    // public void testCriarPedidoComCarrinhoVazio() {
+    //     Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
+    //     gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+    // }
+
     @Test
     public void testListarPedidos() {
-        carrinho.adicionarProduto(produto1, 2);
-        carrinho.adicionarProduto(produto2, 3);
-        Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        Carrinho carrinho1 = gerenciamentoDePedidos.criarCarrinho(estoque);
+        carrinho1.adicionarProduto(produto1, 2);
+        carrinho1.adicionarProduto(produto2, 3);
+        Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho1, estoque);
 
-        carrinho.adicionarProduto(produto2, 3);
-        Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        Carrinho carrinho2 = gerenciamentoDePedidos.criarCarrinho(estoque);
+        carrinho2.adicionarProduto(produto2, 3);
+        Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho2, estoque);
 
         assertEquals(2, gerenciamentoDePedidos.listarPedidos().size());
         assertEquals(pedido1, gerenciamentoDePedidos.listarPedidos().get(0));
         assertEquals(pedido2, gerenciamentoDePedidos.listarPedidos().get(1));
+    }
+
+    @Test
+    public void testFinalizarPedido() {
+        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
+        carrinho.adicionarProduto(produto1, 2);
+        carrinho.adicionarProduto(produto2, 3);
+
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        gerenciamentoDePedidos.finalizarPedido(pedido);
+
+        assertEquals(Pedido.ENTREGUE, pedido.getEstado());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFinalizarPedidoJaFinalizado() {
+        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
+        carrinho.adicionarProduto(produto1, 2);
+        carrinho.adicionarProduto(produto2, 3);
+
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        gerenciamentoDePedidos.finalizarPedido(pedido);
+        gerenciamentoDePedidos.finalizarPedido(pedido); // Deve lançar exceção
     }
 }
