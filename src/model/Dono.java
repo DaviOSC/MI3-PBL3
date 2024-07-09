@@ -17,4 +17,5 @@ public class Dono extends Usuario {
     public void removerProdutoDoEstoque(Estoque estoque, Produto produto, int quantidade) {
         estoque.removerProduto(produto, quantidade);
     }
+    //listar produtos e prdidos
 }
