@@ -11,7 +11,6 @@ public class MainJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         donoPanel = new javax.swing.JPanel();
         menuItensPanel = new javax.swing.JPanel();
