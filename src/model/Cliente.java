@@ -3,11 +3,12 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Clinte extends Usuario {
+public class Cliente extends Usuario {
     public Map<String, Pagamento> metodosPagamentos = new HashMap<>();
     private Carrinho carrinho;
+    private Pedido pedido;
     
-    public Clinte(String nome, String senha) {
+    public Cliente(String nome, String senha) {
         super(nome, senha);
     }
 
@@ -25,7 +26,8 @@ public class Clinte extends Usuario {
     }
 
     // Métodos para interagir com o carrinho
-    public void criarCarrinho(){
+    public void criarCarrinho(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
+        carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
         // pra criar o carrinho tem que ter um atributo tipo gerenciamentoDePedidos ou é só criar diretamente ?
     }
 
@@ -35,5 +37,30 @@ public class Clinte extends Usuario {
 
     public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
         carrinho.removerProduto(produto, quantidade);
+    }
+
+    //Criar pedido (finalizar carrinho)
+    public void criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
+        pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+    }
+
+    public void finalizarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
+        gerenciamentoDePedidos.finalizarPedido(pedido);
+    }
+
+    public void pedidoEnviado(Pedido pedido){
+        pedido.setEstado(2);
+    }
+
+    public void pedidoEntregue(Pedido pedido){
+        pedido.setEstado(3);
+    }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
     }
 }
