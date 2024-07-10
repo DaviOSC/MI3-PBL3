@@ -6,7 +6,7 @@ public class UsuarioFactory {
             case "Dono":
                 return new Dono(nome, senha);
             case "Comprador":
-                return new Comprador(nome, senha);
+                return new Cliente(nome, senha);
             default:
                 throw new IllegalArgumentException("Tipo de usuário desconhecido");
         }
