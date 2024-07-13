@@ -7,15 +7,14 @@ import java.util.Map;
 public class Carrinho
 {
     private Map<Produto, Integer> produtosNoCarrinho;
-    private Estoque estoque;
+
     
-    public Carrinho(Estoque estoque)
+    public Carrinho()
     {
         produtosNoCarrinho = new HashMap<>();
-        this.estoque = estoque;
     }
     
-    public void adicionarProduto(Produto produto, int quantidade) {
+    public void adicionarProduto(Estoque estoque, Produto produto, int quantidade) {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
@@ -81,6 +80,7 @@ public class Carrinho
         }
         return precoTotal;
     }
+
 
     public Map<Produto, Integer> listaProdutos()
     {

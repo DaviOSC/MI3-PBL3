@@ -28,9 +28,6 @@ public class GerenciamentoDePedidos
         instancia = null;
     }
 
-    public Carrinho criarCarrinho(Estoque estoque) {
-        return new Carrinho(estoque);
-    }
 
     public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
     {

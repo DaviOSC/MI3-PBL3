@@ -1,9 +1,15 @@
 package View;
 
+import facade.Facade;
 import java.awt.*;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+import model.*;
 
 public class MainJFrame extends javax.swing.JFrame {
-
+    
+    Facade facade = new Facade();
     public MainJFrame() {
         initComponents();
     }
@@ -27,17 +33,26 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        infoPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nomeField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        descriçãoField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipoCb = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        precoSpinner = new javax.swing.JSpinner();
+        criarProdutoBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        estoquePanel = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaEstoqueDono = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
         pedidosPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -46,14 +61,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        estoquePanel = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
         compradorPanel = new javax.swing.JPanel();
         menuItensPanel1 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
@@ -64,25 +71,18 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         mainPanel1 = new javax.swing.JPanel();
         produtosPanel1 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jPanel23 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
-        jPanel25 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jPanel27 = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
+        jPanel45 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabelaEstoqueCliente = new javax.swing.JTable();
+        bntAddCarrinho = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel46 = new javax.swing.JPanel();
+        jPanel47 = new javax.swing.JPanel();
+        jPanel48 = new javax.swing.JPanel();
         carrinhoPanel = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tabelaCarrinho = new javax.swing.JTable();
         jPanel42 = new javax.swing.JPanel();
         jPanel44 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -136,7 +136,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 81, Short.MAX_VALUE)
+            .addGap(0, 95, Short.MAX_VALUE)
         );
 
         menuItensPanel.add(jPanel19);
@@ -184,7 +184,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 81, Short.MAX_VALUE)
+            .addGap(0, 95, Short.MAX_VALUE)
         );
 
         menuItensPanel.add(jPanel6);
@@ -248,28 +248,44 @@ public class MainJFrame extends javax.swing.JFrame {
 
         produtosPanel.add(jPanel11);
 
-        jPanel9.setPreferredSize(new java.awt.Dimension(471, 104));
-        jPanel9.setLayout(new java.awt.GridLayout(8, 0));
-
-        jLabel9.setText("Descrição do Produto");
-        jPanel9.add(jLabel9);
-        jPanel9.add(jTextField2);
+        infoPanel.setPreferredSize(new java.awt.Dimension(471, 104));
+        infoPanel.setLayout(new java.awt.GridLayout(9, 0));
 
         jLabel8.setText("Nome do Produto");
-        jPanel9.add(jLabel8);
-        jPanel9.add(jTextField1);
+        infoPanel.add(jLabel8);
+
+        nomeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeFieldActionPerformed(evt);
+            }
+        });
+        infoPanel.add(nomeField);
+
+        jLabel9.setText("Descrição do Produto");
+        infoPanel.add(jLabel9);
+        infoPanel.add(descriçãoField);
 
         jLabel4.setText("Tipo");
-        jPanel9.add(jLabel4);
+        infoPanel.add(jLabel4);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel9.add(jComboBox1);
+        tipoCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletrônico", "Roupa", "Alimento" }));
+        infoPanel.add(tipoCb);
 
         jLabel5.setText("Preço");
-        jPanel9.add(jLabel5);
-        jPanel9.add(jSpinner1);
+        infoPanel.add(jLabel5);
 
-        produtosPanel.add(jPanel9);
+        precoSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        infoPanel.add(precoSpinner);
+
+        criarProdutoBtn.setText("Confirmar");
+        criarProdutoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarProdutoBtnActionPerformed(evt);
+            }
+        });
+        infoPanel.add(criarProdutoBtn);
+
+        produtosPanel.add(infoPanel);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -298,6 +314,91 @@ public class MainJFrame extends javax.swing.JFrame {
         produtosPanel.add(jPanel5);
 
         mainPanel.add(produtosPanel, "produtos");
+
+        estoquePanel.setLayout(new java.awt.BorderLayout());
+
+        jPanel14.setPreferredSize(new java.awt.Dimension(471, 104));
+        jPanel14.setLayout(new java.awt.BorderLayout());
+
+        tabelaEstoqueDono.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Descrição", "Quantidade", "Valor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaEstoqueDono.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tabelaEstoqueDono);
+
+        jPanel14.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        estoquePanel.add(jPanel14, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 815, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        estoquePanel.add(jPanel3, java.awt.BorderLayout.SOUTH);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 815, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        estoquePanel.add(jPanel15, java.awt.BorderLayout.NORTH);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 475, Short.MAX_VALUE)
+        );
+
+        estoquePanel.add(jPanel17, java.awt.BorderLayout.EAST);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 475, Short.MAX_VALUE)
+        );
+
+        estoquePanel.add(jPanel18, java.awt.BorderLayout.WEST);
+
+        mainPanel.add(estoquePanel, "estoque");
 
         pedidosPanel.setLayout(new java.awt.BorderLayout());
 
@@ -365,7 +466,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         pedidosPanel.add(jPanel8, java.awt.BorderLayout.EAST);
@@ -378,89 +479,12 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         pedidosPanel.add(jPanel16, java.awt.BorderLayout.WEST);
 
         mainPanel.add(pedidosPanel, "pedidos");
-
-        estoquePanel.setLayout(new java.awt.BorderLayout());
-
-        jPanel14.setPreferredSize(new java.awt.Dimension(471, 104));
-        jPanel14.setLayout(new java.awt.BorderLayout());
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nome", "Tipo", "Quantidade", "Valor"
-            }
-        ));
-        jTable3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(jTable3);
-
-        jPanel14.add(jScrollPane3, java.awt.BorderLayout.CENTER);
-
-        estoquePanel.add(jPanel14, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        estoquePanel.add(jPanel3, java.awt.BorderLayout.SOUTH);
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        estoquePanel.add(jPanel15, java.awt.BorderLayout.NORTH);
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
-        );
-
-        estoquePanel.add(jPanel17, java.awt.BorderLayout.EAST);
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
-        );
-
-        estoquePanel.add(jPanel18, java.awt.BorderLayout.WEST);
-
-        mainPanel.add(estoquePanel, "estoque");
 
         donoPanel.add(mainPanel, java.awt.BorderLayout.CENTER);
 
@@ -479,7 +503,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
+            .addGap(0, 95, Short.MAX_VALUE)
         );
 
         menuItensPanel1.add(jPanel20);
@@ -524,7 +548,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
+            .addGap(0, 95, Short.MAX_VALUE)
         );
 
         menuItensPanel1.add(jPanel21);
@@ -534,108 +558,96 @@ public class MainJFrame extends javax.swing.JFrame {
         mainPanel1.setLayout(new java.awt.CardLayout());
 
         produtosPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-        produtosPanel1.setLayout(new java.awt.GridLayout(3, 3));
+        produtosPanel1.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel45.setPreferredSize(new java.awt.Dimension(471, 104));
+        jPanel45.setLayout(new java.awt.BorderLayout());
 
-        produtosPanel1.add(jPanel22);
+        tabelaEstoqueCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Descrição", "Quantidade", "Valor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaEstoqueCliente.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(tabelaEstoqueCliente);
 
-        produtosPanel1.add(jPanel23);
+        jPanel45.add(jScrollPane5, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        bntAddCarrinho.setText("Adicionar no Carrinho");
+        bntAddCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAddCarrinhoActionPerformed(evt);
+            }
+        });
+        jPanel45.add(bntAddCarrinho, java.awt.BorderLayout.PAGE_END);
 
-        produtosPanel1.add(jPanel24);
+        produtosPanel1.add(jPanel45, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 815, Short.MAX_VALUE)
         );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel25);
+        produtosPanel1.add(jPanel9, java.awt.BorderLayout.SOUTH);
 
-        jPanel26.setPreferredSize(new java.awt.Dimension(471, 104));
-        jPanel26.setLayout(new java.awt.GridLayout(8, 0));
-
-        jLabel10.setText("Descrição do Produto");
-        jPanel26.add(jLabel10);
-        jPanel26.add(jTextField3);
-
-        jLabel11.setText("Nome do Produto");
-        jPanel26.add(jLabel11);
-        jPanel26.add(jTextField4);
-
-        jLabel6.setText("Tipo");
-        jPanel26.add(jLabel6);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel26.add(jComboBox2);
-
-        jLabel7.setText("Preço");
-        jPanel26.add(jLabel7);
-        jPanel26.add(jSpinner2);
-
-        produtosPanel1.add(jPanel26);
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
+        jPanel46.setLayout(jPanel46Layout);
+        jPanel46Layout.setHorizontalGroup(
+            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 815, Short.MAX_VALUE)
         );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel46Layout.setVerticalGroup(
+            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel27);
+        produtosPanel1.add(jPanel46, java.awt.BorderLayout.NORTH);
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
+        jPanel47.setLayout(jPanel47Layout);
+        jPanel47Layout.setHorizontalGroup(
+            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanel47Layout.setVerticalGroup(
+            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel28);
+        produtosPanel1.add(jPanel47, java.awt.BorderLayout.EAST);
+
+        javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
+        jPanel48.setLayout(jPanel48Layout);
+        jPanel48Layout.setHorizontalGroup(
+            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel48Layout.setVerticalGroup(
+            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 475, Short.MAX_VALUE)
+        );
+
+        produtosPanel1.add(jPanel48, java.awt.BorderLayout.WEST);
 
         mainPanel1.add(produtosPanel1, "produtos1");
 
@@ -644,7 +656,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel29.setPreferredSize(new java.awt.Dimension(471, 104));
         jPanel29.setLayout(new java.awt.BorderLayout());
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -670,9 +682,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable4.setDragEnabled(true);
-        jTable4.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(jTable4);
+        tabelaCarrinho.setDragEnabled(true);
+        tabelaCarrinho.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tabelaCarrinho);
 
         jPanel29.add(jScrollPane4, java.awt.BorderLayout.CENTER);
 
@@ -744,7 +756,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         carrinhoPanel.add(jPanel32, java.awt.BorderLayout.EAST);
@@ -757,7 +769,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         carrinhoPanel.add(jPanel33, java.awt.BorderLayout.WEST);
@@ -849,7 +861,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         contaPanel.add(jPanel37, java.awt.BorderLayout.EAST);
@@ -862,7 +874,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         contaPanel.add(jPanel38, java.awt.BorderLayout.WEST);
@@ -907,6 +919,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         changePanel("estoque");
+        preencherTabelaEstoque();
+                System.out.print("AcessarEstoque \n");
+        
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
@@ -931,6 +946,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
         changePanelC("carrinho");
+        preencherTabelaCarrinho();
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     private void btnEstoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoque1ActionPerformed
@@ -944,6 +960,21 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void criarProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProdutoBtnActionPerformed
+        facade.login(new Dono("Davi", "123"));
+        facade.adicionarProdutoEmEstoque(criarProduto(), 1);
+        System.out.print("CriarProdutoInterface \n");
+    }//GEN-LAST:event_criarProdutoBtnActionPerformed
+
+    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeFieldActionPerformed
+
+    private void bntAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAddCarrinhoActionPerformed
+        facade.login(new Cliente("Davi", "123"));
+        facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
+    }//GEN-LAST:event_bntAddCarrinhoActionPerformed
     
     private void changePanel(String nome)
     {
@@ -959,6 +990,61 @@ public class MainJFrame extends javax.swing.JFrame {
     {
         CardLayout layout = (CardLayout) getContentPane().getLayout();
         layout.show(getContentPane(), nome);
+    }
+    
+    private void preencherTabelaCarrinho() {
+ 
+        DefaultTableModel modeloTabela = new DefaultTableModel();
+        String[] colunas = {"Produto", "Tipo", "Quantidade", "Preço unitário", "Preço total"};
+        modeloTabela.setColumnIdentifiers(colunas);
+
+        modeloTabela.setRowCount(0);
+        Iterator<Map.Entry<Produto, Integer>> iterator = facade.listarProdutosCarrinhoIterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Produto, Integer> entrada = iterator.next();
+            Produto produto = entrada.getKey();
+            int quantidade = entrada.getValue();
+            Object[] linha = {
+                produto.getNome(),
+                produto.getTipoProduto(),
+                quantidade,
+                produto.getPreco(),
+                (produto.getPreco()*quantidade)
+                
+            };
+            modeloTabela.addRow(linha);
+        }
+        tabelaCarrinho.setModel(modeloTabela);
+    }
+    private void preencherTabelaEstoque() {
+        DefaultTableModel modeloTabela = new DefaultTableModel();
+        String[] colunas = {"Nome", "Tipo", "Quantidade", "Valor"};
+        modeloTabela.setColumnIdentifiers(colunas);
+
+        modeloTabela.setRowCount(0);
+        Iterator<Map.Entry<Produto, Integer>> iterator = facade.listarProdutosEstoqueIterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Produto, Integer> entrada = iterator.next();
+            Produto produto = entrada.getKey();
+                    System.out.print(produto.getNome());
+            int quantidade = entrada.getValue();
+            Object[] linha = {
+                produto.getNome(),
+                produto.getTipoProduto(),
+                quantidade,
+                produto.getPreco()
+                
+            };
+            modeloTabela.addRow(linha);
+        }
+        tabelaEstoqueDono.setModel(modeloTabela);
+        tabelaEstoqueCliente.setModel(modeloTabela);
+    }
+    public Produto criarProduto()
+    {
+        return ProdutoFactory.criarProduto(tipoCb.getSelectedItem().toString(), nomeField.getText(), (double)precoSpinner.getValue(), descriçãoField.getText());
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -988,12 +1074,14 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new MainJFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntAddCarrinho;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCarrinho;
     private javax.swing.JButton btnConta;
@@ -1005,25 +1093,22 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel carrinhoPanel;
     private javax.swing.JPanel compradorPanel;
     private javax.swing.JPanel contaPanel;
+    private javax.swing.JButton criarProdutoBtn;
+    private javax.swing.JTextField descriçãoField;
     private javax.swing.JPanel donoPanel;
     private javax.swing.JPanel estoquePanel;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -1045,13 +1130,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
@@ -1070,6 +1148,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
+    private javax.swing.JPanel jPanel45;
+    private javax.swing.JPanel jPanel46;
+    private javax.swing.JPanel jPanel47;
+    private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1079,17 +1161,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblTotal;
@@ -1097,8 +1172,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel1;
     private javax.swing.JPanel menuItensPanel;
     private javax.swing.JPanel menuItensPanel1;
+    private javax.swing.JTextField nomeField;
     private javax.swing.JPanel pedidosPanel;
+    private javax.swing.JSpinner precoSpinner;
     private javax.swing.JPanel produtosPanel;
     private javax.swing.JPanel produtosPanel1;
+    private javax.swing.JTable tabelaCarrinho;
+    private javax.swing.JTable tabelaEstoqueCliente;
+    private javax.swing.JTable tabelaEstoqueDono;
+    private javax.swing.JComboBox<String> tipoCb;
     // End of variables declaration//GEN-END:variables
 }

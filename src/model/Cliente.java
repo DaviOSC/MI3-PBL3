@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Cliente extends Usuario {
     public Map<String, Pagamento> metodosPagamentos = new HashMap<>();
-    private Carrinho carrinho;
+    private Carrinho carrinho = new Carrinho();
     private Pedido pedido;
     
     public Cliente(String nome, String senha) {
@@ -25,14 +25,8 @@ public class Cliente extends Usuario {
         return metodosPagamentos.get(tipo);
     }
 
-    // Métodos para interagir com o carrinho
-    public void criarCarrinho(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
-        carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-        // pra criar o carrinho tem que ter um atributo tipo gerenciamentoDePedidos ou é só criar diretamente ?
-    }
-
-    public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) {
-        carrinho.adicionarProduto(produto, quantidade);
+    public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) {
+        carrinho.adicionarProduto(estoque, produto, quantidade);
     }
 
     public void removerProdutoDoCarrinho(Produto produto, int quantidade) {

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Estoque {
@@ -49,5 +50,8 @@ public class Estoque {
     // Lista todos os produtos no estoque.
     public Map<Produto, Integer> listarProdutos() {
         return produtos;
+    }
+    public Iterator<Map.Entry<Produto, Integer>> listarProdutosIterator() {
+        return produtos.entrySet().iterator();
     }
 }
