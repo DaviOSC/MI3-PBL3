@@ -1005,7 +1005,7 @@ public class MainJFrame extends javax.swing.JFrame {
             Produto produto = entrada.getKey();
             int quantidade = entrada.getValue();
             Object[] linha = {
-                produto.getNome(),
+                produto,
                 produto.getTipoProduto(),
                 quantidade,
                 produto.getPreco(),
@@ -1030,7 +1030,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     System.out.print(produto.getNome());
             int quantidade = entrada.getValue();
             Object[] linha = {
-                produto.getNome(),
+                produto,
                 produto.getTipoProduto(),
                 quantidade,
                 produto.getPreco()

@@ -29,11 +29,7 @@ public class Estoque {
         if (produtos.containsKey(produto)) {
             int quantidadeAtual = produtos.get(produto);
             if (quantidadeAtual >= quantidade) {
-                if (quantidadeAtual == quantidade) {
-                    produtos.remove(produto);
-                } else {
                     produtos.put(produto, quantidadeAtual - quantidade);
-                }
             } else {
                 throw new IllegalArgumentException("Quantidade insuficiente em estoque");
             }
