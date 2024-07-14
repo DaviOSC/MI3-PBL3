@@ -54,7 +54,7 @@ public class ControllerLoja {
 
     public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
         if (usuarioLogado instanceof Cliente) {
-            ((Cliente) usuarioLogado).removerProdutoDoCarrinho(produto, quantidade);
+            ((Cliente) usuarioLogado).removerProdutoDoCarrinho(estoque,produto, quantidade);
         } else {
            // throw new IllegalAccessException("Acesso negado: Apenas Clientes podem remover produtos do carrinho.");
         }

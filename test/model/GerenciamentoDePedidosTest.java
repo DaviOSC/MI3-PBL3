@@ -20,7 +20,12 @@ public class GerenciamentoDePedidosTest {
 
     @Before
     public void setUp() {
+        
         estoque = Estoque.getInstancia();
+        List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
+        for (Produto produto : produtosParaRemover) {
+            estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
+        }
         estoque.adicionarProduto(produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração"), 10);
         estoque.adicionarProduto(produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão"), 20);
 
@@ -30,9 +35,11 @@ public class GerenciamentoDePedidosTest {
 
     @Test
     public void testCriarPedido() {
-        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-        carrinho.adicionarProduto(produto1, 2);
-        carrinho.adicionarProduto(produto2, 3);
+        Carrinho carrinho = new Carrinho();
+        System.out.println(estoque.getQuantidadeProduto(produto1));
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.adicionarProduto(estoque, produto2, 3);
+        System.out.println(estoque.getQuantidadeProduto(produto1));
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
 
@@ -42,6 +49,7 @@ public class GerenciamentoDePedidosTest {
         assertEquals(Pedido.NOVO, pedido.getEstado());
 
         Iterator<Map.Entry<Produto, Integer>> iterator = pedido.listarItens();
+        System.out.println(estoque.getQuantidadeProduto(produto1));
         while (iterator.hasNext()) {
             Map.Entry<Produto, Integer> entry = iterator.next();
             Produto produto = entry.getKey();
@@ -55,6 +63,7 @@ public class GerenciamentoDePedidosTest {
                 assertTrue("Produto desconhecido encontrado no pedido", false);
             }
         }
+        System.out.println(estoque.getQuantidadeProduto(produto1));
 
         assertEquals(8, estoque.getQuantidadeProduto(produto1));
         assertEquals(17, estoque.getQuantidadeProduto(produto2));
@@ -68,13 +77,13 @@ public class GerenciamentoDePedidosTest {
 
     @Test
     public void testListarPedidos() {
-        Carrinho carrinho1 = gerenciamentoDePedidos.criarCarrinho(estoque);
-        carrinho1.adicionarProduto(produto1, 2);
-        carrinho1.adicionarProduto(produto2, 3);
+        Carrinho carrinho1 = new Carrinho();
+        carrinho1.adicionarProduto(estoque, produto1, 2);
+        carrinho1.adicionarProduto(estoque, produto2, 3);
         Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho1, estoque);
 
-        Carrinho carrinho2 = gerenciamentoDePedidos.criarCarrinho(estoque);
-        carrinho2.adicionarProduto(produto2, 3);
+        Carrinho carrinho2 = new Carrinho();
+        carrinho2.adicionarProduto(estoque, produto2, 3);
         Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho2, estoque);
 
         assertEquals(2, gerenciamentoDePedidos.listarPedidos().size());
@@ -84,9 +93,9 @@ public class GerenciamentoDePedidosTest {
 
     @Test
     public void testFinalizarPedido() {
-        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-        carrinho.adicionarProduto(produto1, 2);
-        carrinho.adicionarProduto(produto2, 3);
+        Carrinho carrinho = new Carrinho();
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.adicionarProduto(estoque, produto2, 3);
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
         gerenciamentoDePedidos.finalizarPedido(pedido);
@@ -96,9 +105,9 @@ public class GerenciamentoDePedidosTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testFinalizarPedidoJaFinalizado() {
-        Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-        carrinho.adicionarProduto(produto1, 2);
-        carrinho.adicionarProduto(produto2, 3);
+        Carrinho carrinho = new Carrinho();
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.adicionarProduto(estoque, produto2, 3);
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
         gerenciamentoDePedidos.finalizarPedido(pedido);

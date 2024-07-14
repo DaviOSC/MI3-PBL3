@@ -22,40 +22,28 @@ public class Carrinho
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
         
-        if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade)
-        {
+        if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
-        }
-        else
-        {
+            estoque.removerProduto(produto, quantidade); // Remove do estoque ao adicionar ao carrinho
+        } else {
             throw new IllegalArgumentException("Quantidade insuficiente em estoque");
         }
     }
 
-    // Remove uma quantidade específica de um produto do carrinho.
-    public void removerProduto(Produto produto, int quantidade)
-    {
-        if (produtosNoCarrinho.containsKey(produto))
-        {
+    public void removerProduto(Estoque estoque, Produto produto, int quantidade) {
+        if (produtosNoCarrinho.containsKey(produto)) {
             int quantidadeAtual = produtosNoCarrinho.get(produto);
-            if (quantidadeAtual >= quantidade)
-            {
-                if (quantidadeAtual == quantidade)
-                {
+            if (quantidadeAtual >= quantidade) {
+                if (quantidadeAtual == quantidade) {
                     produtosNoCarrinho.remove(produto);
-                }
-                else
-                {
+                } else {
                     produtosNoCarrinho.put(produto, quantidadeAtual - quantidade);
                 }
-            }
-            else
-            {
+                estoque.adicionarProduto(produto, quantidade); // Adiciona ao estoque ao remover do carrinho
+            } else {
                 throw new IllegalArgumentException("Quantidade insuficiente no carrinho");
             }
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("Produto não encontrado no carrinho");
         }
     }

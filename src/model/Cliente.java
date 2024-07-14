@@ -29,8 +29,8 @@ public class Cliente extends Usuario {
         carrinho.adicionarProduto(estoque, produto, quantidade);
     }
 
-    public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
-        carrinho.removerProduto(produto, quantidade);
+    public void removerProdutoDoCarrinho(Estoque estoque, Produto produto, int quantidade) {
+        carrinho.removerProduto(estoque, produto, quantidade);
     }
 
     //Criar pedido (finalizar carrinho)
