@@ -964,7 +964,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private void criarProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProdutoBtnActionPerformed
         facade.login(new Dono("Davi", "123"));
         facade.adicionarProdutoEmEstoque(criarProduto(), 1);
-        System.out.print("CriarProdutoInterface \n");
     }//GEN-LAST:event_criarProdutoBtnActionPerformed
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
