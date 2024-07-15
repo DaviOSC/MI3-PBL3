@@ -41,5 +41,11 @@ public abstract class Produto {
     public int hashCode() {
         return Objects.hash(nome, preco, descricao);
     }
+    
+   @Override
+   public String toString()
+   {
+       return getNome();
+   }
 }
 

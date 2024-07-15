@@ -5,11 +5,12 @@ import java.util.Map;
 
 public class Cliente extends Usuario {
     public Map<String, Pagamento> metodosPagamentos = new HashMap<>();
-    private Carrinho carrinho = new Carrinho();
+    private Carrinho carrinho;
     private Pedido pedido;
     
     public Cliente(String nome, String senha) {
         super(nome, senha);
+        this.carrinho = new Carrinho();
     }
 
     @Override
@@ -27,6 +28,7 @@ public class Cliente extends Usuario {
 
     public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) {
         carrinho.adicionarProduto(estoque, produto, quantidade);
+                System.out.print("ADDProdutoCARCliente \n");
     }
 
     public void removerProdutoDoCarrinho(Estoque estoque, Produto produto, int quantidade) {

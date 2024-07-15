@@ -47,6 +47,7 @@ public class ControllerLoja {
     public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) {
         if (usuarioLogado instanceof Cliente) {
             ((Cliente) usuarioLogado).adicionarProdutoAoCarrinho(estoque, produto, quantidade);
+                    System.out.print("ADDProdutoCARController \n");
         } else {
             //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem adicionar produtos ao carrinho.");
         }
@@ -115,6 +116,10 @@ public class ControllerLoja {
 
     public Iterator<Map.Entry<Produto, Integer>> listarProdutosEstoqueIterator() {
         return estoque.listarProdutos().entrySet().iterator();
+    }
+
+    public void removerTipoProdutoDoEstoque(Produto produto) {
+        estoque.removerTipoProduto(produto);
     }
 
     

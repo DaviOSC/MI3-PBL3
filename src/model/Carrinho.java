@@ -15,6 +15,7 @@ public class Carrinho
     }
     
     public void adicionarProduto(Estoque estoque, Produto produto, int quantidade) {
+        System.out.print(this);
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
@@ -25,6 +26,7 @@ public class Carrinho
         if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
             estoque.removerProduto(produto, quantidade); // Remove do estoque ao adicionar ao carrinho
+                    System.out.print("ADDProdutoCARCarrinhoClass \n");
         } else {
             throw new IllegalArgumentException("Quantidade insuficiente em estoque");
         }
@@ -55,8 +57,20 @@ public class Carrinho
 
     // Retorna um Iterator para todos os produtos no carrinho.
     public Iterator<Map.Entry<Produto, Integer>> listarProdutos() {
-        return produtosNoCarrinho.entrySet().iterator();
-    }
+         // Obtém o iterator
+         Iterator<Map.Entry<Produto, Integer>> iterator = produtosNoCarrinho.entrySet().iterator();
+
+         // Imprime os itens do iterator
+         while (iterator.hasNext()) {
+             Map.Entry<Produto, Integer> entry = iterator.next();
+             Produto produto = entry.getKey();
+             int quantidade = entry.getValue();
+             System.out.println("Produto: " + produto.getNome() + ", Quantidade: " + quantidade);
+         }
+
+         // Retorna um novo iterator
+         return produtosNoCarrinho.entrySet().iterator();
+     }
 
     // Método para calcular o preço total do carrinho
     public double getPrecoTotal() {

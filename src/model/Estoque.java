@@ -37,6 +37,14 @@ public class Estoque {
             throw new IllegalArgumentException("Produto não encontrado no estoque");
         }
     }
+    
+    public void removerTipoProduto(Produto produto)
+    {
+        if (produtos.containsKey(produto))
+        {
+            produtos.remove(produto);
+        }
+    }
 
     // Retorna a quantidade disponível de um produto específico no estoque.
     public int getQuantidadeProduto(Produto produto) {

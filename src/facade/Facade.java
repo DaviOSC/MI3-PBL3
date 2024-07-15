@@ -20,7 +20,6 @@ public class Facade {
 
     public void adicionarProdutoEmEstoque(Produto produto, int quantidade) {
         controller.adicionarProdutoEmEstoque(produto, quantidade);
-                System.out.print("CriarProdutoFacade \n");
     }
 
     public void removerProdutoDoEstoque(Produto produto, int quantidade) {
@@ -29,6 +28,7 @@ public class Facade {
 
     public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) {
         controller.adicionarProdutoAoCarrinho(produto, quantidade);
+        System.out.print("ADDProdutoCARFacade \n");
     }
 
     public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
@@ -71,6 +71,11 @@ public class Facade {
     public void login(Usuario usuario)
     {
         controller.login(usuario);
+    }
+
+    public void removerTipoProdutoDoEstoque(Produto produto)
+    {
+        controller.removerTipoProdutoDoEstoque(produto);
     }
     
    

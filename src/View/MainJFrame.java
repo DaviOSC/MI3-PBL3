@@ -49,6 +49,10 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaEstoqueDono = new javax.swing.JTable();
+        jPanel49 = new javax.swing.JPanel();
+        btnSubProdEstoque = new javax.swing.JButton();
+        btnAddProdEstoque = new javax.swing.JButton();
+        btnRmvProdEstoque = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
@@ -85,8 +89,8 @@ public class MainJFrame extends javax.swing.JFrame {
         tabelaCarrinho = new javax.swing.JTable();
         jPanel42 = new javax.swing.JPanel();
         jPanel44 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSubProdCarrinho = new javax.swing.JButton();
+        btnAddProdCarrinho = new javax.swing.JButton();
         jPanel43 = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -341,8 +345,42 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         tabelaEstoqueDono.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tabelaEstoqueDono);
+        if (tabelaEstoqueDono.getColumnModel().getColumnCount() > 0) {
+            tabelaEstoqueDono.getColumnModel().getColumn(0).setResizable(false);
+            tabelaEstoqueDono.getColumnModel().getColumn(1).setResizable(false);
+            tabelaEstoqueDono.getColumnModel().getColumn(2).setResizable(false);
+            tabelaEstoqueDono.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel14.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel49.setLayout(new java.awt.GridLayout(3, 0));
+
+        btnSubProdEstoque.setText("Quantidade-");
+        btnSubProdEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubProdEstoqueActionPerformed(evt);
+            }
+        });
+        jPanel49.add(btnSubProdEstoque);
+
+        btnAddProdEstoque.setText("Quantidade+");
+        btnAddProdEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProdEstoqueActionPerformed(evt);
+            }
+        });
+        jPanel49.add(btnAddProdEstoque);
+
+        btnRmvProdEstoque.setText("Remover");
+        btnRmvProdEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRmvProdEstoqueActionPerformed(evt);
+            }
+        });
+        jPanel49.add(btnRmvProdEstoque);
+
+        jPanel14.add(jPanel49, java.awt.BorderLayout.SOUTH);
 
         estoquePanel.add(jPanel14, java.awt.BorderLayout.CENTER);
 
@@ -692,11 +730,21 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel44.setLayout(new java.awt.GridLayout(2, 0));
 
-        jButton4.setText("Quantidade-");
-        jPanel44.add(jButton4);
+        btnSubProdCarrinho.setText("Quantidade-");
+        btnSubProdCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubProdCarrinhoActionPerformed(evt);
+            }
+        });
+        jPanel44.add(btnSubProdCarrinho);
 
-        jButton3.setText("Quantidade+");
-        jPanel44.add(jButton3);
+        btnAddProdCarrinho.setText("Quantidade+");
+        btnAddProdCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProdCarrinhoActionPerformed(evt);
+            }
+        });
+        jPanel44.add(btnAddProdCarrinho);
 
         jPanel42.add(jPanel44);
 
@@ -933,10 +981,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        facade.login(new Dono("Davi", "123"));
         changeScreen("donopanel");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        facade.login(new Cliente("Davi", "123"));
         changeScreen("compradorpanel");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -962,8 +1012,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void criarProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProdutoBtnActionPerformed
-        facade.login(new Dono("Davi", "123"));
-        facade.adicionarProdutoEmEstoque(criarProduto(), 1);
+        facade.adicionarProdutoEmEstoque(criarProduto(), 0);
     }//GEN-LAST:event_criarProdutoBtnActionPerformed
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
@@ -971,9 +1020,38 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeFieldActionPerformed
 
     private void bntAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAddCarrinhoActionPerformed
-        facade.login(new Cliente("Davi", "123"));
+ 
         facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
+        preencherTabelaEstoque();
+        preencherTabelaCarrinho();
     }//GEN-LAST:event_bntAddCarrinhoActionPerformed
+
+    private void btnSubProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdEstoqueActionPerformed
+        facade.removerProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
+        preencherTabelaEstoque();
+    }//GEN-LAST:event_btnSubProdEstoqueActionPerformed
+
+    private void btnAddProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdEstoqueActionPerformed
+        facade.adicionarProdutoEmEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
+        preencherTabelaEstoque();
+    }//GEN-LAST:event_btnAddProdEstoqueActionPerformed
+
+    private void btnRmvProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvProdEstoqueActionPerformed
+        facade.removerTipoProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0));
+        preencherTabelaEstoque();
+    }//GEN-LAST:event_btnRmvProdEstoqueActionPerformed
+
+    private void btnSubProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdCarrinhoActionPerformed
+        facade.removerProdutoDoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+        preencherTabelaCarrinho();
+        preencherTabelaEstoque();
+    }//GEN-LAST:event_btnSubProdCarrinhoActionPerformed
+
+    private void btnAddProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdCarrinhoActionPerformed
+        facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+        preencherTabelaCarrinho();
+        preencherTabelaEstoque();
+    }//GEN-LAST:event_btnAddProdCarrinhoActionPerformed
     
     private void changePanel(String nome)
     {
@@ -993,10 +1071,15 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private void preencherTabelaCarrinho() {
  
-        DefaultTableModel modeloTabela = new DefaultTableModel();
+        DefaultTableModel modeloTabela = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }};
+        
         String[] colunas = {"Produto", "Tipo", "Quantidade", "Preço unitário", "Preço total"};
         modeloTabela.setColumnIdentifiers(colunas);
-
+        
         modeloTabela.setRowCount(0);
         Iterator<Map.Entry<Produto, Integer>> iterator = facade.listarProdutosCarrinhoIterator();
 
@@ -1017,7 +1100,12 @@ public class MainJFrame extends javax.swing.JFrame {
         tabelaCarrinho.setModel(modeloTabela);
     }
     private void preencherTabelaEstoque() {
-        DefaultTableModel modeloTabela = new DefaultTableModel();
+        DefaultTableModel modeloTabela = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }};
+        
         String[] colunas = {"Nome", "Tipo", "Quantidade", "Valor"};
         modeloTabela.setColumnIdentifiers(colunas);
 
@@ -1027,7 +1115,6 @@ public class MainJFrame extends javax.swing.JFrame {
         while (iterator.hasNext()) {
             Map.Entry<Produto, Integer> entrada = iterator.next();
             Produto produto = entrada.getKey();
-                    System.out.print(produto.getNome());
             int quantidade = entrada.getValue();
             Object[] linha = {
                 produto,
@@ -1081,6 +1168,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntAddCarrinho;
+    private javax.swing.JButton btnAddProdCarrinho;
+    private javax.swing.JButton btnAddProdEstoque;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCarrinho;
     private javax.swing.JButton btnConta;
@@ -1089,6 +1178,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnEstoque1;
     private javax.swing.JButton btnPedidos;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnRmvProdEstoque;
+    private javax.swing.JButton btnSubProdCarrinho;
+    private javax.swing.JButton btnSubProdEstoque;
     private javax.swing.JPanel carrinhoPanel;
     private javax.swing.JPanel compradorPanel;
     private javax.swing.JPanel contaPanel;
@@ -1098,8 +1190,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel estoquePanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel12;
@@ -1151,6 +1241,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
+    private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
