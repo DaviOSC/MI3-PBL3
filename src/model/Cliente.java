@@ -10,6 +10,7 @@ public class Cliente extends Usuario {
     
     public Cliente(String nome, String senha) {
         super(nome, senha);
+        this.carrinho = new Carrinho();
     }
 
     @Override
@@ -25,18 +26,13 @@ public class Cliente extends Usuario {
         return metodosPagamentos.get(tipo);
     }
 
-    // Métodos para interagir com o carrinho
-    public void criarCarrinho(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
-        carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-        // pra criar o carrinho tem que ter um atributo tipo gerenciamentoDePedidos ou é só criar diretamente ?
+    public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) {
+        carrinho.adicionarProduto(estoque, produto, quantidade);
+                System.out.print("ADDProdutoCARCliente \n");
     }
 
-    public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) {
-        carrinho.adicionarProduto(produto, quantidade);
-    }
-
-    public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
-        carrinho.removerProduto(produto, quantidade);
+    public void removerProdutoDoCarrinho(Estoque estoque, Produto produto, int quantidade) {
+        carrinho.removerProduto(estoque, produto, quantidade);
     }
 
     //Criar pedido (finalizar carrinho)

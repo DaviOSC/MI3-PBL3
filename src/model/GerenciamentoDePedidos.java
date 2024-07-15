@@ -28,9 +28,6 @@ public class GerenciamentoDePedidos
         instancia = null;
     }
 
-    public Carrinho criarCarrinho(Estoque estoque) {
-        return new Carrinho(estoque);
-    }
 
     public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
     {
@@ -41,7 +38,7 @@ public class GerenciamentoDePedidos
             Produto produto = entry.getKey();
             int quantidade = entry.getValue();
 
-            estoque.removerProduto(produto, quantidade);
+            // estoque.removerProduto(produto, quantidade);
         }
         if(carrinho.listaProdutos().size() != 0)
         {

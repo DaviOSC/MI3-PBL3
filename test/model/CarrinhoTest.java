@@ -1,16 +1,17 @@
 package model;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CarrinhoTest {
+import org.junit.Before;
+import org.junit.Test;
 
+public class CarrinhoTest {
     private Estoque estoque;
     private Carrinho carrinho;
     private Produto produto1;
@@ -19,87 +20,89 @@ public class CarrinhoTest {
     @Before
     public void setUp() {
         estoque = Estoque.getInstancia();
-        carrinho = new Carrinho(estoque);
-        produto1 = new Eletronico("Smartphone", 1200.0, "Um smartphone de última geração");
-        produto2 = new Roupa("Camiseta", 50.0, "Uma camiseta de algodão");
-
-        // Limpar o estoque antes de cada teste
         List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
         for (Produto produto : produtosParaRemover) {
             estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
         }
+        estoque = Estoque.getInstancia();  // Get a new instance
+        
+        produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração");
+        produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão");
 
-        // Adicionar produtos ao estoque
         estoque.adicionarProduto(produto1, 10);
         estoque.adicionarProduto(produto2, 20);
+
+        carrinho = new Carrinho();
     }
 
     @Test
     public void testAdicionarProduto() {
-        carrinho.adicionarProduto(produto1, 2);
+        carrinho.adicionarProduto(estoque, produto1, 2);
         assertEquals(2, carrinho.getQuantidadeProduto(produto1));
-
-        carrinho.adicionarProduto(produto1, 3);
-        assertEquals(5, carrinho.getQuantidadeProduto(produto1));
+        assertEquals(8, estoque.getQuantidadeProduto(produto1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAdicionarProdutoQuantidadeInsuficiente() {
-        carrinho.adicionarProduto(produto1, 11); // Deve lançar uma exceção
+        assertThrows(IllegalArgumentException.class, () -> {
+            carrinho.adicionarProduto(estoque, produto1, 15);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testAdicionarProdutoQuantidadeInvalida() {
-        carrinho.adicionarProduto(produto1, -1); // Deve lançar uma exceção
+    @Test
+    public void testAdicionarProdutoQuantidadeZero() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            carrinho.adicionarProduto(estoque, produto1, 0);
+        });
     }
 
     @Test
     public void testRemoverProduto() {
-        carrinho.adicionarProduto(produto1, 5);
-        carrinho.removerProduto(produto1, 2);
-        assertEquals(3, carrinho.getQuantidadeProduto(produto1));
-
-        carrinho.removerProduto(produto1, 3);
-        assertEquals(0, carrinho.getQuantidadeProduto(produto1));
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.removerProduto(estoque, produto1, 1);
+        assertEquals(1, carrinho.getQuantidadeProduto(produto1));
+        assertEquals(9, estoque.getQuantidadeProduto(produto1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoverProdutoQuantidadeInsuficienteNoCarrinho() {
-        carrinho.adicionarProduto(produto1, 2);
-        carrinho.removerProduto(produto1, 3); // Deve lançar uma exceção
+    @Test
+    public void testRemoverProdutoQuantidadeInsuficiente() {
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        assertThrows(IllegalArgumentException.class, () -> {
+            carrinho.removerProduto(estoque, produto1, 3);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoverProdutoNaoExistenteNoCarrinho() {
-        carrinho.removerProduto(produto1, 1); // Deve lançar uma exceção
+    @Test
+    public void testRemoverProdutoNaoExistente() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            carrinho.removerProduto(estoque, produto1, 1);
+        });
     }
 
     @Test
     public void testGetQuantidadeProduto() {
-        carrinho.adicionarProduto(produto1, 3);
-        assertEquals(3, carrinho.getQuantidadeProduto(produto1));
-
-        carrinho.adicionarProduto(produto2, 4);
-        assertEquals(4, carrinho.getQuantidadeProduto(produto2));
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        assertEquals(2, carrinho.getQuantidadeProduto(produto1));
+        assertEquals(0, carrinho.getQuantidadeProduto(produto2));
     }
 
     @Test
     public void testGetPrecoTotal() {
-        carrinho.adicionarProduto(produto1, 3); // 3 * 1200.0
-        carrinho.adicionarProduto(produto2, 4); // 4 * 50.0
-        assertEquals(3600.0 + 200.0, carrinho.getPrecoTotal(), 0.001);
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.adicionarProduto(estoque, produto2, 3);
+        assertEquals(2150.00, carrinho.getPrecoTotal(), 0.01);
     }
 
     @Test
     public void testListarProdutos() {
-        carrinho.adicionarProduto(produto1, 3);
-        carrinho.adicionarProduto(produto2, 4);
-
+        carrinho.adicionarProduto(estoque, produto1, 2);
+        carrinho.adicionarProduto(estoque, produto2, 3);
         Map<Produto, Integer> produtos = carrinho.listaProdutos();
+
         assertEquals(2, produtos.size());
         assertTrue(produtos.containsKey(produto1));
         assertTrue(produtos.containsKey(produto2));
-        assertEquals(3, produtos.get(produto1).intValue());
-        assertEquals(4, produtos.get(produto2).intValue());
+        assertEquals(2, (int) produtos.get(produto1));
+        assertEquals(3, (int) produtos.get(produto2));
     }
 }

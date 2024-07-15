@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Estoque {
@@ -28,16 +29,20 @@ public class Estoque {
         if (produtos.containsKey(produto)) {
             int quantidadeAtual = produtos.get(produto);
             if (quantidadeAtual >= quantidade) {
-                if (quantidadeAtual == quantidade) {
-                    produtos.remove(produto);
-                } else {
                     produtos.put(produto, quantidadeAtual - quantidade);
-                }
             } else {
                 throw new IllegalArgumentException("Quantidade insuficiente em estoque");
             }
         } else {
             throw new IllegalArgumentException("Produto não encontrado no estoque");
+        }
+    }
+    
+    public void removerTipoProduto(Produto produto)
+    {
+        if (produtos.containsKey(produto))
+        {
+            produtos.remove(produto);
         }
     }
 
@@ -49,5 +54,8 @@ public class Estoque {
     // Lista todos os produtos no estoque.
     public Map<Produto, Integer> listarProdutos() {
         return produtos;
+    }
+    public Iterator<Map.Entry<Produto, Integer>> listarProdutosIterator() {
+        return produtos.entrySet().iterator();
     }
 }

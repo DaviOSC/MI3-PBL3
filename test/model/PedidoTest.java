@@ -28,13 +28,13 @@ public class PedidoTest {
         estoque.adicionarProduto(produto2, 20);
 
         // Configurando os carrinhos
-        carrinho1 = new Carrinho(estoque);
-        carrinho1.adicionarProduto(produto1, 2);
-        carrinho1.adicionarProduto(produto2, 3);
+        carrinho1 = new Carrinho();
+        carrinho1.adicionarProduto(estoque ,produto1, 2);
+        carrinho1.adicionarProduto(estoque, produto2, 3);
 
-        carrinho2 = new Carrinho(estoque);
-        carrinho2.adicionarProduto(produto1, 1);
-        carrinho2.adicionarProduto(produto2, 1);
+        carrinho2 = new Carrinho();
+        carrinho2.adicionarProduto(estoque, produto1, 1);
+        carrinho2.adicionarProduto(estoque, produto2, 1);
     }
 
     @Test

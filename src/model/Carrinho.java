@@ -7,15 +7,15 @@ import java.util.Map;
 public class Carrinho
 {
     private Map<Produto, Integer> produtosNoCarrinho;
-    private Estoque estoque;
+
     
-    public Carrinho(Estoque estoque)
+    public Carrinho()
     {
         produtosNoCarrinho = new HashMap<>();
-        this.estoque = estoque;
     }
     
-    public void adicionarProduto(Produto produto, int quantidade) {
+    public void adicionarProduto(Estoque estoque, Produto produto, int quantidade) {
+        System.out.print(this);
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
@@ -23,40 +23,29 @@ public class Carrinho
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
         
-        if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade)
-        {
+        if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
-        }
-        else
-        {
+            estoque.removerProduto(produto, quantidade); // Remove do estoque ao adicionar ao carrinho
+                    System.out.print("ADDProdutoCARCarrinhoClass \n");
+        } else {
             throw new IllegalArgumentException("Quantidade insuficiente em estoque");
         }
     }
 
-    // Remove uma quantidade específica de um produto do carrinho.
-    public void removerProduto(Produto produto, int quantidade)
-    {
-        if (produtosNoCarrinho.containsKey(produto))
-        {
+    public void removerProduto(Estoque estoque, Produto produto, int quantidade) {
+        if (produtosNoCarrinho.containsKey(produto)) {
             int quantidadeAtual = produtosNoCarrinho.get(produto);
-            if (quantidadeAtual >= quantidade)
-            {
-                if (quantidadeAtual == quantidade)
-                {
+            if (quantidadeAtual >= quantidade) {
+                if (quantidadeAtual == quantidade) {
                     produtosNoCarrinho.remove(produto);
-                }
-                else
-                {
+                } else {
                     produtosNoCarrinho.put(produto, quantidadeAtual - quantidade);
                 }
-            }
-            else
-            {
+                estoque.adicionarProduto(produto, quantidade); // Adiciona ao estoque ao remover do carrinho
+            } else {
                 throw new IllegalArgumentException("Quantidade insuficiente no carrinho");
             }
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("Produto não encontrado no carrinho");
         }
     }
@@ -68,8 +57,20 @@ public class Carrinho
 
     // Retorna um Iterator para todos os produtos no carrinho.
     public Iterator<Map.Entry<Produto, Integer>> listarProdutos() {
-        return produtosNoCarrinho.entrySet().iterator();
-    }
+         // Obtém o iterator
+         Iterator<Map.Entry<Produto, Integer>> iterator = produtosNoCarrinho.entrySet().iterator();
+
+         // Imprime os itens do iterator
+         while (iterator.hasNext()) {
+             Map.Entry<Produto, Integer> entry = iterator.next();
+             Produto produto = entry.getKey();
+             int quantidade = entry.getValue();
+             System.out.println("Produto: " + produto.getNome() + ", Quantidade: " + quantidade);
+         }
+
+         // Retorna um novo iterator
+         return produtosNoCarrinho.entrySet().iterator();
+     }
 
     // Método para calcular o preço total do carrinho
     public double getPrecoTotal() {
@@ -81,6 +82,7 @@ public class Carrinho
         }
         return precoTotal;
     }
+
 
     public Map<Produto, Integer> listaProdutos()
     {
