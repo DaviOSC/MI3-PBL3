@@ -21,9 +21,12 @@ public class Carrinho
         }
         
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
+        System.out.print("\nQuant em estoque "+quantidadeEmEstoque);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
-        
-        if (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade) {
+        System.out.print("\nQuant no carrinho "+quantidadeNoCarrinho);
+        System.out.print("\nQuant em estoque"+quantidade);
+        System.out.print("\n quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade"+ (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade)+"\n");
+        if (quantidadeEmEstoque >= quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
             estoque.removerProduto(produto, quantidade); // Remove do estoque ao adicionar ao carrinho
                     System.out.print("ADDProdutoCARCarrinhoClass \n");

@@ -21,6 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
         donoPanel = new javax.swing.JPanel();
         menuItensPanel = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnEstoque = new javax.swing.JButton();
@@ -68,6 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
         compradorPanel = new javax.swing.JPanel();
         menuItensPanel1 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
         btnProdutos = new javax.swing.JButton();
         btnCarrinho = new javax.swing.JButton();
         btnEstoque1 = new javax.swing.JButton();
@@ -130,7 +132,7 @@ public class MainJFrame extends javax.swing.JFrame {
         donoPanel.setLayout(new java.awt.BorderLayout());
 
         menuItensPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuItensPanel.setLayout(new java.awt.GridLayout(7, 0));
+        menuItensPanel.setLayout(new java.awt.GridLayout(3, 0));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -140,10 +142,12 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
         menuItensPanel.add(jPanel19);
+
+        jPanel22.setLayout(new java.awt.GridLayout(5, 0));
 
         btnCadastrarProduto.setText("Novo Produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +155,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnCadastrarProdutoActionPerformed(evt);
             }
         });
-        menuItensPanel.add(btnCadastrarProduto);
+        jPanel22.add(btnCadastrarProduto);
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +163,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        menuItensPanel.add(jButton1);
+        jPanel22.add(jButton1);
 
         btnEstoque.setText("Ver Estoque");
         btnEstoque.addActionListener(new java.awt.event.ActionListener() {
@@ -167,10 +171,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnEstoqueActionPerformed(evt);
             }
         });
-        menuItensPanel.add(btnEstoque);
+        jPanel22.add(btnEstoque);
 
         btnConta.setText("Minha Conta");
-        menuItensPanel.add(btnConta);
+        jPanel22.add(btnConta);
 
         btnPedidos.setText("Ver Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +182,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnPedidosActionPerformed(evt);
             }
         });
-        menuItensPanel.add(btnPedidos);
+        jPanel22.add(btnPedidos);
+
+        menuItensPanel.add(jPanel22);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -188,7 +194,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
         menuItensPanel.add(jPanel6);
@@ -388,7 +394,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,7 +407,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +480,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,7 +493,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,7 +537,7 @@ public class MainJFrame extends javax.swing.JFrame {
         compradorPanel.setLayout(new java.awt.BorderLayout());
 
         menuItensPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuItensPanel1.setLayout(new java.awt.GridLayout(7, 0));
+        menuItensPanel1.setLayout(new java.awt.GridLayout(3, 0));
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -541,10 +547,12 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
         menuItensPanel1.add(jPanel20);
+
+        jPanel23.setLayout(new java.awt.GridLayout(4, 0));
 
         btnProdutos.setText("Produtos");
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
@@ -552,7 +560,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnProdutosActionPerformed(evt);
             }
         });
-        menuItensPanel1.add(btnProdutos);
+        jPanel23.add(btnProdutos);
 
         btnCarrinho.setText("Carrinho");
         btnCarrinho.addActionListener(new java.awt.event.ActionListener() {
@@ -560,7 +568,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnCarrinhoActionPerformed(evt);
             }
         });
-        menuItensPanel1.add(btnCarrinho);
+        jPanel23.add(btnCarrinho);
 
         btnEstoque1.setText("Ver Estoque");
         btnEstoque1.addActionListener(new java.awt.event.ActionListener() {
@@ -568,7 +576,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnEstoque1ActionPerformed(evt);
             }
         });
-        menuItensPanel1.add(btnEstoque1);
+        jPanel23.add(btnEstoque1);
 
         btnConta1.setText("Minha Conta");
         btnConta1.addActionListener(new java.awt.event.ActionListener() {
@@ -576,7 +584,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnConta1ActionPerformed(evt);
             }
         });
-        menuItensPanel1.add(btnConta1);
+        jPanel23.add(btnConta1);
+
+        menuItensPanel1.add(jPanel23);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -586,7 +596,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
         menuItensPanel1.add(jPanel21);
@@ -1219,6 +1229,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
