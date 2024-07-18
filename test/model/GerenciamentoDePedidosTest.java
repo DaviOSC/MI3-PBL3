@@ -20,15 +20,22 @@ public class GerenciamentoDePedidosTest {
 
     @Before
     public void setUp() {
-        
+        // Reiniciar a instância de Estoque
         estoque = Estoque.getInstancia();
+
+        // Limpar produtos do estoque
         List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
         for (Produto produto : produtosParaRemover) {
             estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
         }
-        estoque.adicionarProduto(produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração"), 10);
-        estoque.adicionarProduto(produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão"), 20);
 
+        // Adicionar novos produtos
+        produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração");
+        produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão");
+        estoque.adicionarProduto(produto1, 10);
+        estoque.adicionarProduto(produto2, 20);
+
+        // Reiniciar e obter instância de GerenciamentoDePedidos
         GerenciamentoDePedidos.resetInstancia();
         gerenciamentoDePedidos = GerenciamentoDePedidos.getInstancia();
     }
@@ -36,10 +43,8 @@ public class GerenciamentoDePedidosTest {
     @Test
     public void testCriarPedido() {
         Carrinho carrinho = new Carrinho();
-        System.out.println(estoque.getQuantidadeProduto(produto1));
         carrinho.adicionarProduto(estoque, produto1, 2);
         carrinho.adicionarProduto(estoque, produto2, 3);
-        System.out.println(estoque.getQuantidadeProduto(produto1));
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
 
@@ -49,7 +54,6 @@ public class GerenciamentoDePedidosTest {
         assertEquals(Pedido.NOVO, pedido.getEstado());
 
         Iterator<Map.Entry<Produto, Integer>> iterator = pedido.listarItens();
-        System.out.println(estoque.getQuantidadeProduto(produto1));
         while (iterator.hasNext()) {
             Map.Entry<Produto, Integer> entry = iterator.next();
             Produto produto = entry.getKey();
@@ -63,17 +67,10 @@ public class GerenciamentoDePedidosTest {
                 assertTrue("Produto desconhecido encontrado no pedido", false);
             }
         }
-        System.out.println(estoque.getQuantidadeProduto(produto1));
 
         assertEquals(8, estoque.getQuantidadeProduto(produto1));
         assertEquals(17, estoque.getQuantidadeProduto(produto2));
     }
-
-    // @Test(expected = IllegalArgumentException.class)
-    // public void testCriarPedidoComCarrinhoVazio() {
-    //     Carrinho carrinho = gerenciamentoDePedidos.criarCarrinho(estoque);
-    //     gerenciamentoDePedidos.criarPedido(carrinho, estoque);
-    // }
 
     @Test
     public void testListarPedidos() {

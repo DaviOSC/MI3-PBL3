@@ -28,8 +28,6 @@ public class Carrinho
         System.out.print("\n quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade"+ (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade)+"\n");
         if (quantidadeEmEstoque >= quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
-            estoque.removerProduto(produto, quantidade); // Remove do estoque ao adicionar ao carrinho
-                    System.out.print("ADDProdutoCARCarrinhoClass \n");
         } else {
             throw new IllegalArgumentException("Quantidade insuficiente em estoque");
         }
@@ -44,7 +42,6 @@ public class Carrinho
                 } else {
                     produtosNoCarrinho.put(produto, quantidadeAtual - quantidade);
                 }
-                estoque.adicionarProduto(produto, quantidade); // Adiciona ao estoque ao remover do carrinho
             } else {
                 throw new IllegalArgumentException("Quantidade insuficiente no carrinho");
             }

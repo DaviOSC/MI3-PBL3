@@ -38,7 +38,7 @@ public class GerenciamentoDePedidos
             Produto produto = entry.getKey();
             int quantidade = entry.getValue();
 
-            // estoque.removerProduto(produto, quantidade);
+            estoque.removerProduto(produto, quantidade);
         }
         if(carrinho.listaProdutos().size() != 0)
         {
