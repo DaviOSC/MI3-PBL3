@@ -9,6 +9,19 @@ public class PagamentoPayPal extends Pagamento
         this.email = email;
     }
 
+    @Override
+    protected boolean validarDetalhesPagamento() {
+        // Lógica de validação específica para PayPal
+        return email != null && !email.isEmpty() && email.contains("@");
+    }
+
+    @Override
+    protected boolean processarPagamento() {
+        // Lógica para processar o pagamento via PayPal
+        System.out.println("Pagamento realizado via PayPal.");
+        return true; // Supondo que o pagamento foi bem-sucedido
+    }
+
     public String getEmail()
     {
         return email;

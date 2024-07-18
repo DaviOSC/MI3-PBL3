@@ -26,6 +26,14 @@ public class Cliente extends Usuario {
         return metodosPagamentos.get(tipo);
     }
 
+    public boolean realizarPagamento(String tipo) {
+        Pagamento pagamento = getPagamento(tipo);
+        if (pagamento == null) {
+            throw new IllegalArgumentException("Método de pagamento não cadastrado: " + tipo);
+        }
+        return pagamento.realizarPagamento(pedido);
+    }
+    
     public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) {
         carrinho.adicionarProduto(estoque, produto, quantidade);
                 System.out.print("ADDProdutoCARCliente \n");
