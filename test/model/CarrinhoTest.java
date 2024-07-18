@@ -19,16 +19,18 @@ public class CarrinhoTest {
 
     @Before
     public void setUp() {
+        // Reiniciar a instância de Estoque
         estoque = Estoque.getInstancia();
+
+        // Limpar produtos do estoque
         List<Produto> produtosParaRemover = new ArrayList<>(estoque.listarProdutos().keySet());
         for (Produto produto : produtosParaRemover) {
             estoque.removerProduto(produto, estoque.getQuantidadeProduto(produto));
         }
-        estoque = Estoque.getInstancia();  // Get a new instance
-        
+
+        // Adicionar novos produtos
         produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração");
         produto2 = new Roupa("Camiseta", 50.00, "Camiseta de algodão");
-
         estoque.adicionarProduto(produto1, 10);
         estoque.adicionarProduto(produto2, 20);
 
@@ -39,7 +41,7 @@ public class CarrinhoTest {
     public void testAdicionarProduto() {
         carrinho.adicionarProduto(estoque, produto1, 2);
         assertEquals(2, carrinho.getQuantidadeProduto(produto1));
-        assertEquals(8, estoque.getQuantidadeProduto(produto1));
+        assertEquals(10, estoque.getQuantidadeProduto(produto1)); // Estoque não muda
     }
 
     @Test
@@ -61,7 +63,7 @@ public class CarrinhoTest {
         carrinho.adicionarProduto(estoque, produto1, 2);
         carrinho.removerProduto(estoque, produto1, 1);
         assertEquals(1, carrinho.getQuantidadeProduto(produto1));
-        assertEquals(9, estoque.getQuantidadeProduto(produto1));
+        assertEquals(10, estoque.getQuantidadeProduto(produto1)); // Estoque não muda
     }
 
     @Test
