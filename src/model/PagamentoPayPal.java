@@ -18,12 +18,17 @@ public class PagamentoPayPal extends Pagamento
     @Override
     protected boolean processarPagamento() {
         // Lógica para processar o pagamento via PayPal
-        System.out.println("Pagamento realizado via PayPal.");
         return true; // Supondo que o pagamento foi bem-sucedido
     }
 
     public String getEmail()
     {
         return email;
+    }
+    
+    @Override 
+    public String toString()
+    {
+        return "Email" + email;
     }
 }

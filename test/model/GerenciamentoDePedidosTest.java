@@ -38,19 +38,21 @@ public class GerenciamentoDePedidosTest {
         // Reiniciar e obter instância de GerenciamentoDePedidos
         GerenciamentoDePedidos.resetInstancia();
         gerenciamentoDePedidos = GerenciamentoDePedidos.getInstancia();
+        
     }
 
     @Test
-    public void testCriarPedido() {
+    public void testCriarPedido() throws IllegalAccessException {
+        Cliente user = new Cliente("Teste", "senha");
         Carrinho carrinho = new Carrinho();
         carrinho.adicionarProduto(estoque, produto1, 2);
         carrinho.adicionarProduto(estoque, produto2, 3);
 
-        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
 
         assertNotNull(pedido);
-        assertEquals(1, gerenciamentoDePedidos.listarPedidos().size());
-        assertEquals(pedido, gerenciamentoDePedidos.listarPedidos().get(0));
+        assertEquals(true, gerenciamentoDePedidos.listarPedidos().hasNext());
+        assertEquals(pedido, gerenciamentoDePedidos.listarPedidos().next());
         assertEquals(Pedido.NOVO, pedido.getEstado());
 
         Iterator<Map.Entry<Produto, Integer>> iterator = pedido.listarItens();
@@ -73,40 +75,45 @@ public class GerenciamentoDePedidosTest {
     }
 
     @Test
-    public void testListarPedidos() {
+    public void testListarPedidos() throws IllegalAccessException {
+        Cliente user = new Cliente("Teste", "senha");
         Carrinho carrinho1 = new Carrinho();
         carrinho1.adicionarProduto(estoque, produto1, 2);
         carrinho1.adicionarProduto(estoque, produto2, 3);
-        Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho1, estoque);
+        Pedido pedido1 = gerenciamentoDePedidos.criarPedido(carrinho1, estoque, user);
 
         Carrinho carrinho2 = new Carrinho();
         carrinho2.adicionarProduto(estoque, produto2, 3);
-        Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho2, estoque);
-
-        assertEquals(2, gerenciamentoDePedidos.listarPedidos().size());
-        assertEquals(pedido1, gerenciamentoDePedidos.listarPedidos().get(0));
-        assertEquals(pedido2, gerenciamentoDePedidos.listarPedidos().get(1));
+        Pedido pedido2 = gerenciamentoDePedidos.criarPedido(carrinho2, estoque,user);
+        Iterator iterator = gerenciamentoDePedidos.listarPedidos();
+        
+        assertEquals(true, iterator.hasNext());
+        assertEquals(pedido1, iterator.next());
+        assertEquals(true, iterator.hasNext());
+        assertEquals(pedido2, iterator.next());
     }
 
     @Test
-    public void testFinalizarPedido() {
+    public void testFinalizarPedido() throws IllegalAccessException {
+        Cliente user = new Cliente("Teste", "senha");
         Carrinho carrinho = new Carrinho();
         carrinho.adicionarProduto(estoque, produto1, 2);
         carrinho.adicionarProduto(estoque, produto2, 3);
 
-        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
         gerenciamentoDePedidos.finalizarPedido(pedido);
 
         assertEquals(Pedido.ENTREGUE, pedido.getEstado());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFinalizarPedidoJaFinalizado() {
+    public void testFinalizarPedidoJaFinalizado() throws IllegalAccessException {
+        Cliente user = new Cliente("Teste", "senha");
         Carrinho carrinho = new Carrinho();
         carrinho.adicionarProduto(estoque, produto1, 2);
         carrinho.adicionarProduto(estoque, produto2, 3);
 
-        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
         gerenciamentoDePedidos.finalizarPedido(pedido);
         gerenciamentoDePedidos.finalizarPedido(pedido); // Deve lançar exceção
     }

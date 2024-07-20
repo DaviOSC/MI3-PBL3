@@ -14,8 +14,9 @@ import javax.swing.table.DefaultTableModel;
 import model.*;
 
 public class MainJFrame extends javax.swing.JFrame {
-    
+
     Facade facade = new Facade();
+
     public MainJFrame() {
         initComponents();
     }
@@ -106,19 +107,30 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel33 = new javax.swing.JPanel();
         contaPanel = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
-        jPanel40 = new javax.swing.JPanel();
+        panelCadastroPag = new javax.swing.JPanel();
+        jPanel27 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jPanel50 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        pagamentoCB = new javax.swing.JComboBox<>();
+        pagamentoLbl1 = new javax.swing.JLabel();
+        pagamentoTxt1 = new javax.swing.JTextField();
+        pagamentoLbl2 = new javax.swing.JLabel();
+        pagamentoTxt2 = new javax.swing.JTextField();
+        pagamentoLbl3 = new javax.swing.JLabel();
+        pagamentoTxt3 = new javax.swing.JTextField();
+        pagamentoLbl4 = new javax.swing.JLabel();
+        pagamentoTxt4 = new javax.swing.JTextField();
+        bntAdicionarPagamento = new javax.swing.JButton();
+        panelListaPag = new javax.swing.JPanel();
         jPanel41 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jPanel39 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel28 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        listaPagamentos = new javax.swing.JList<>();
         jPanel35 = new javax.swing.JPanel();
         jPanel36 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
@@ -829,49 +841,141 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel34.setPreferredSize(new java.awt.Dimension(471, 104));
         jPanel34.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel40.setLayout(new java.awt.GridLayout(1, 0));
+        panelCadastroPag.setLayout(new java.awt.BorderLayout());
 
-        jPanel41.setPreferredSize(new java.awt.Dimension(471, 104));
-        jPanel41.setLayout(new java.awt.GridLayout(8, 0));
+        jPanel27.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel27.setPreferredSize(new java.awt.Dimension(100, 100));
+        jPanel27.setLayout(new java.awt.BorderLayout());
 
-        jLabel12.setText("Descrição do Produto");
-        jPanel41.add(jLabel12);
-        jPanel41.add(jTextField5);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Cadastro de Formas de Pagamento");
+        jPanel27.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        jLabel13.setText("Nome do Produto");
-        jPanel41.add(jLabel13);
-        jPanel41.add(jTextField6);
+        panelCadastroPag.add(jPanel27, java.awt.BorderLayout.NORTH);
 
-        jLabel14.setText("Tipo");
-        jPanel41.add(jLabel14);
+        jPanel24.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel41.add(jComboBox3);
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        jLabel15.setText("Preço");
-        jPanel41.add(jLabel15);
-        jPanel41.add(jSpinner3);
+        panelCadastroPag.add(jPanel24, java.awt.BorderLayout.EAST);
 
-        jPanel40.add(jPanel41);
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 384, Short.MAX_VALUE)
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        jPanel34.add(jPanel40);
+        panelCadastroPag.add(jPanel25, java.awt.BorderLayout.SOUTH);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jPanel26.setPreferredSize(new java.awt.Dimension(20, 20));
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 375, Short.MAX_VALUE)
+        );
+
+        panelCadastroPag.add(jPanel26, java.awt.BorderLayout.WEST);
+
+        jPanel50.setPreferredSize(new java.awt.Dimension(471, 104));
+        jPanel50.setLayout(new java.awt.GridLayout(11, 0));
+
+        jLabel18.setText("Tipo");
+        jPanel50.add(jLabel18);
+
+        pagamentoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cartao de Credito", "PayPal", "Transferencia Bancaria" }));
+        pagamentoCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagamentoCBActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        jPanel50.add(pagamentoCB);
 
-        jPanel39.add(jScrollPane1);
+        pagamentoLbl1.setText("Descrição do Produto");
+        jPanel50.add(pagamentoLbl1);
+        jPanel50.add(pagamentoTxt1);
 
-        jPanel34.add(jPanel39);
+        pagamentoLbl2.setText("Nome do Produto");
+        jPanel50.add(pagamentoLbl2);
+        jPanel50.add(pagamentoTxt2);
+
+        pagamentoLbl3.setText("Preço");
+        jPanel50.add(pagamentoLbl3);
+        jPanel50.add(pagamentoTxt3);
+
+        pagamentoLbl4.setText("Preço");
+        jPanel50.add(pagamentoLbl4);
+        jPanel50.add(pagamentoTxt4);
+
+        bntAdicionarPagamento.setText("Adicionar Forma de Pagamento");
+        bntAdicionarPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAdicionarPagamentoActionPerformed(evt);
+            }
+        });
+        jPanel50.add(bntAdicionarPagamento);
+
+        panelCadastroPag.add(jPanel50, java.awt.BorderLayout.CENTER);
+
+        jPanel34.add(panelCadastroPag);
+
+        panelListaPag.setLayout(new java.awt.BorderLayout());
+
+        jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel41.setPreferredSize(new java.awt.Dimension(0, 150));
+        jPanel41.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Formas de Pagamento Cadastradas");
+        jPanel41.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        panelListaPag.add(jPanel41, java.awt.BorderLayout.NORTH);
+
+        jPanel28.setPreferredSize(new java.awt.Dimension(384, 150));
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panelListaPag.add(jPanel28, java.awt.BorderLayout.SOUTH);
+
+        listaPagamentos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        listaPagamentos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane6.setViewportView(listaPagamentos);
+
+        panelListaPag.add(jScrollPane6, java.awt.BorderLayout.CENTER);
+
+        jPanel34.add(panelListaPag);
 
         contaPanel.add(jPanel34, java.awt.BorderLayout.CENTER);
 
@@ -892,11 +996,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel36.setLayout(jPanel36Layout);
         jPanel36Layout.setHorizontalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel36Layout.setVerticalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         contaPanel.add(jPanel36, java.awt.BorderLayout.NORTH);
@@ -905,11 +1009,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 139, Short.MAX_VALUE)
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         contaPanel.add(jPanel37, java.awt.BorderLayout.EAST);
@@ -922,7 +1026,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         contaPanel.add(jPanel38, java.awt.BorderLayout.WEST);
@@ -1000,14 +1104,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConta1ActionPerformed
         changePanelC("conta");
+        preencherListaPagamentos();
+        configurarPagamento((String) pagamentoCB.getSelectedItem());
+
     }//GEN-LAST:event_btnConta1ActionPerformed
 
     private void btnCriarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarPedidoActionPerformed
         try {
-            facade.criarPedido();
+
+            Pedido pedido = facade.criarPedido();
+            new PagamentoDialog(this, pedido.getPrecoTotal()).setVisible(true);
             JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessException e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnCriarPedidoActionPerformed
@@ -1023,19 +1132,16 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeFieldActionPerformed
 
     private void bntAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAddCarrinhoActionPerformed
-        try
-        {
-           facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
+        try {
+            facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
             preencherTabelaEstoque();
             preencherTabelaCarrinho();
             setPreco(facade.getPreçoCarrinho());
-            JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho", "Sistema", JOptionPane.INFORMATION_MESSAGE); 
+            JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        catch (IllegalArgumentException e)
-        {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-        
+
 
     }//GEN-LAST:event_bntAddCarrinhoActionPerformed
 
@@ -1057,27 +1163,23 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRmvProdEstoqueActionPerformed
 
     private void btnSubProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdCarrinhoActionPerformed
-        if(tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0) != null)
-            {
-                facade.removerProdutoDoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
-                preencherTabelaCarrinho();
-                preencherTabelaEstoque();
-            }
+        if (tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0) != null) {
+            facade.removerProdutoDoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+            preencherTabelaCarrinho();
+            preencherTabelaEstoque();
+        }
         setPreco(facade.getPreçoCarrinho());
-       
+
     }//GEN-LAST:event_btnSubProdCarrinhoActionPerformed
 
     private void btnAddProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdCarrinhoActionPerformed
-        try
-        {
+        try {
             facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
             preencherTabelaCarrinho();
             preencherTabelaEstoque();
-            setPreco(facade.getPreçoCarrinho());   
-        }
-        catch (IllegalArgumentException e)
-        {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+            setPreco(facade.getPreçoCarrinho());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAddProdCarrinhoActionPerformed
@@ -1092,50 +1194,90 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_carregarMenuItemActionPerformed
 
     private void salvarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarMenuItemActionPerformed
-        try
-        {
+        try {
             //opção para selecionar o arquivo para salvar
             JFileChooser chooser = new JFileChooser();
             //filtro para escolher apenas o tipo de arquivo especifico
             FileNameExtensionFilter filter = new FileNameExtensionFilter("pblFiles", "pbl");
             chooser.setFileFilter(filter);
-            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-            {
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 facade.salvarDados(chooser.getSelectedFile().getName());
                 JOptionPane.showMessageDialog(null, "Informações salvas.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_salvarMenuItemActionPerformed
 
     private void cadastroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMenuItemActionPerformed
         new Cadastro(this).setVisible(true);
     }//GEN-LAST:event_cadastroMenuItemActionPerformed
-    
-    private void changePanel(String nome)
-    {
+
+    private void pagamentoCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagamentoCBActionPerformed
+        configurarPagamento((String) pagamentoCB.getSelectedItem());
+    }//GEN-LAST:event_pagamentoCBActionPerformed
+
+    private void bntAdicionarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAdicionarPagamentoActionPerformed
+        String tipoPagamento = (String) pagamentoCB.getSelectedItem();
+        Pagamento pagamento = null;
+        try {
+            switch (tipoPagamento) {
+                case "Cartao de Credito":
+                    pagamento = PagamentosFactory.criarPagamento(
+                            tipoPagamento,
+                            pagamentoTxt1.getText(),
+                            pagamentoTxt2.getText(),
+                            pagamentoTxt3.getText(),
+                            pagamentoTxt4.getText()
+                    );
+                    break;
+                case "PayPal":
+                    pagamento = PagamentosFactory.criarPagamento(
+                            tipoPagamento,
+                            pagamentoTxt1.getText()
+                    );
+                    break;
+                case "Transferencia Bancaria":
+                    pagamento = PagamentosFactory.criarPagamento(
+                            tipoPagamento,
+                            pagamentoTxt1.getText(),
+                            pagamentoTxt2.getText()
+                    );
+                    break;
+                default:
+                    throw new IllegalArgumentException("Tipo de pagamento não suportado: " + tipoPagamento);
+            }
+            JOptionPane.showMessageDialog(this, "Pagamento criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            facade.criarMetodoPagamento(tipoPagamento, pagamento);
+            System.out.print(pagamento);
+            preencherListaPagamentos();
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_bntAdicionarPagamentoActionPerformed
+
+    private void changePanel(String nome) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, nome);
     }
-    private void changePanelC(String nome)
-    {
+
+    private void changePanelC(String nome) {
         CardLayout layout = (CardLayout) mainPanel1.getLayout();
         layout.show(mainPanel1, nome);
     }
-    public void changeScreen(String nome)
-    {
+
+    public void changeScreen(String nome) {
         CardLayout layout = (CardLayout) getContentPane().getLayout();
         layout.show(getContentPane(), nome);
     }
-    private void preencherTabelaPedidos()
-    {
+
+    private void preencherTabelaPedidos() {
         DefaultTableModel modeloTabela = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
 
@@ -1157,17 +1299,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 Produto produto = entrada.getKey();
                 int quantidade = entrada.getValue();
                 produtosFormatados.append(produto.getNome())
-                    .append(" (")
-                    .append(quantidade)
-                    .append("), ");
+                        .append(" (")
+                        .append(quantidade)
+                        .append("), ");
             }
 
             if (produtosFormatados.length() > 0) {
                 produtosFormatados.setLength(produtosFormatados.length() - 2);
             }
-            
+
             String estadoFormatado;
-                switch (pedido.getEstado()) {
+            switch (pedido.getEstado()) {
                 case Pedido.NOVO:
                     estadoFormatado = "Novo";
                     break;
@@ -1183,8 +1325,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 default:
                     estadoFormatado = "Desconhecido";
                     break;
-                }
-
+            }
 
             Object[] linha = {
                 pedido.getCliente().getNome(),
@@ -1199,16 +1340,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void preencherTabelaCarrinho() {
- 
+
         DefaultTableModel modeloTabela = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; 
-        }};
-        
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         String[] colunas = {"Produto", "Tipo", "Quantidade", "Preço unitário", "Preço total"};
         modeloTabela.setColumnIdentifiers(colunas);
-        
+
         modeloTabela.setRowCount(0);
         Iterator<Map.Entry<Produto, Integer>> iterator = facade.listarProdutosCarrinhoIterator();
 
@@ -1221,20 +1363,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 produto.getTipoProduto(),
                 quantidade,
                 produto.getPreco(),
-                (produto.getPreco()*quantidade)
-                
+                (produto.getPreco() * quantidade)
+
             };
             modeloTabela.addRow(linha);
         }
         tabelaCarrinho.setModel(modeloTabela);
     }
+
     private void preencherTabelaEstoque() {
         DefaultTableModel modeloTabela = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; 
-        }};
-        
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         String[] colunas = {"Nome", "Tipo", "Quantidade", "Valor"};
         modeloTabela.setColumnIdentifiers(colunas);
 
@@ -1250,63 +1394,137 @@ public class MainJFrame extends javax.swing.JFrame {
                 produto.getTipoProduto(),
                 quantidade,
                 produto.getPreco()
-                
+
             };
             modeloTabela.addRow(linha);
         }
         tabelaEstoqueDono.setModel(modeloTabela);
         tabelaEstoqueCliente.setModel(modeloTabela);
     }
-    public Produto criarProduto()
-    {
-        return ProdutoFactory.criarProduto(tipoCb.getSelectedItem().toString(), nomeField.getText(), (double)precoSpinner.getValue(), descriçãoField.getText());
+
+    public void preencherListaPagamentos() {
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+
+        Iterator<Map.Entry<String, Pagamento>> iterator = facade.listarMetodosPagamento();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, Pagamento> entrada = iterator.next();
+            Pagamento pagamento = entrada.getValue();
+            String info1 = "";
+            String info2 = "";
+            String info3 = "";
+            String info4 = "";
+            String itemLista = "";
+
+            if (pagamento instanceof PagamentoCartaoCredito) {
+                PagamentoCartaoCredito cartaoCredito = (PagamentoCartaoCredito) pagamento;
+                info1 = "Número: " + cartaoCredito.getNumeroCartao();
+                info2 = "Nome: " + cartaoCredito.getNomeTitular();
+                info3 = "Data:" + cartaoCredito.getDataValidade();
+                info4 = "Código:" + cartaoCredito.getCodigoSeguranca();
+                itemLista = entrada.getKey() + " - " + info1 + " - " + info2 + " - " + info3 + " - " + info4;
+                
+            } else if (pagamento instanceof PagamentoTransferenciaBancaria) {
+                PagamentoTransferenciaBancaria transferenciaBancaria = (PagamentoTransferenciaBancaria) pagamento;
+                info1 = "Conta: " + transferenciaBancaria.getContaBancaria();
+                info2 = "Banco: " + transferenciaBancaria.getBanco();
+                itemLista = entrada.getKey() + " - " + info1 + " - " + info2;
+            } else if (pagamento instanceof PagamentoPayPal) {
+                PagamentoPayPal payPal = (PagamentoPayPal) pagamento;
+                info1 = "Email: " + payPal.getEmail();
+                itemLista = entrada.getKey() + " - " + info1;
+            }
+            modeloLista.addElement(itemLista);
+        }
+
+        listaPagamentos.setModel(modeloLista);
     }
-    
-    public void setPreco(double preco)
-    {
-        lblTotal.setText("Total:"+preco);
+
+    public Produto criarProduto() {
+        return ProdutoFactory.criarProduto(tipoCb.getSelectedItem().toString(), nomeField.getText(), (double) precoSpinner.getValue(), descriçãoField.getText());
     }
-    
-    public Facade getFacade()
-    {
+
+    public void setPreco(double preco) {
+        lblTotal.setText("Total: R$ " + preco);
+    }
+
+    public Facade getFacade() {
         return facade;
     }
-    public void fazerLogin(String login, String senha) throws IllegalArgumentException, IllegalAccessException
-    {
-        Usuario usuario = facade.fazerLogin(login,senha);
-        jMenu.setText(usuario.getTipoUsuario());
+
+    public void fazerLogin(String login, String senha) throws IllegalArgumentException, IllegalAccessException {
+        Usuario usuario = facade.fazerLogin(login, senha);
+        jMenu.setText(usuario.getTipoUsuario() + " " + usuario.getNome());
         setVisible(true);
-        if (usuario instanceof Dono)
+        if (usuario instanceof Dono) {
             changeScreen("donopanel");
-        else if (usuario instanceof  Cliente)
+        } else if (usuario instanceof Cliente) {
             changeScreen("compradorpanel");
-            
+        }
     }
-    
-    public void cadastro(String usuario, String senha, String tipo) throws IllegalAccessException, IllegalArgumentException
-    {
+
+    public void cadastro(String usuario, String senha, String tipo) throws IllegalAccessException, IllegalArgumentException {
         facade.cadastrarUsuario(tipo, usuario, senha);
     }
-    
-    public void carregarArquivo()
-    {
-        try
-        {
+
+    private void configurarPagamento(String tipo) {
+        // Esconda todos os labels e textBoxes inicialmente
+        pagamentoLbl1.setVisible(false);
+        pagamentoLbl2.setVisible(false);
+        pagamentoLbl3.setVisible(false);
+        pagamentoLbl4.setVisible(false);
+        pagamentoTxt1.setVisible(false);
+        pagamentoTxt2.setVisible(false);
+        pagamentoTxt3.setVisible(false);
+        pagamentoTxt4.setVisible(false);
+
+        // Configure os componentes de acordo com o tipo de pagamento selecionado
+        switch (tipo) {
+            case "Cartao de Credito":
+                pagamentoLbl1.setText("Nome no Cartão:");
+                pagamentoLbl2.setText("Número do Cartão:");
+                pagamentoLbl3.setText("Data de Validade:");
+                pagamentoLbl4.setText("Código de Segurança.");
+                pagamentoLbl1.setVisible(true);
+                pagamentoLbl2.setVisible(true);
+                pagamentoLbl3.setVisible(true);
+                pagamentoLbl4.setVisible(true);
+                pagamentoTxt1.setVisible(true);
+                pagamentoTxt2.setVisible(true);
+                pagamentoTxt3.setVisible(true);
+                pagamentoTxt4.setVisible(true);
+                break;
+            case "PayPal":
+                pagamentoLbl1.setText("Email do PayPal:");
+                pagamentoLbl1.setVisible(true);
+                pagamentoTxt1.setVisible(true);
+                break;
+            case "Transferencia Bancaria":
+                pagamentoLbl1.setText("Número do Banco:");
+                pagamentoLbl2.setText("Número da Conta:");
+                pagamentoLbl1.setVisible(true);
+                pagamentoLbl2.setVisible(true);
+                pagamentoTxt1.setVisible(true);
+                pagamentoTxt2.setVisible(true);
+                break;
+        }
+    }
+
+    public void carregarArquivo() {
+        try {
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("pblFiles", "pbl");
             chooser.setFileFilter(filter);
-            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-            {
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 facade.carregarDados(chooser.getSelectedFile().getName());
                 System.out.print(chooser.getSelectedFile().getName());
                 JOptionPane.showMessageDialog(null, "Informações carredadas.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        catch(IOException | ClassNotFoundException e)
-        {
+        } catch (IOException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1341,10 +1559,11 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntAddCarrinho;
+    private javax.swing.JButton bntAdicionarPagamento;
     private javax.swing.JButton btnAddProdCarrinho;
     private javax.swing.JButton btnAddProdEstoque;
     private javax.swing.JButton btnCadastrarProduto;
@@ -1368,11 +1587,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel donoPanel;
     private javax.swing.JPanel estoquePanel;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
@@ -1395,6 +1612,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
@@ -1406,9 +1628,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
@@ -1419,26 +1639,35 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JList<String> listaPagamentos;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainPanel1;
     private javax.swing.JPanel menuItensPanel;
     private javax.swing.JPanel menuItensPanel1;
     private javax.swing.JTextField nomeField;
+    private javax.swing.JComboBox<String> pagamentoCB;
+    private javax.swing.JLabel pagamentoLbl1;
+    private javax.swing.JLabel pagamentoLbl2;
+    private javax.swing.JLabel pagamentoLbl3;
+    private javax.swing.JLabel pagamentoLbl4;
+    private javax.swing.JTextField pagamentoTxt1;
+    private javax.swing.JTextField pagamentoTxt2;
+    private javax.swing.JTextField pagamentoTxt3;
+    private javax.swing.JTextField pagamentoTxt4;
+    private javax.swing.JPanel panelCadastroPag;
+    private javax.swing.JPanel panelListaPag;
     private javax.swing.JPanel pedidosPanel;
     private javax.swing.JSpinner precoSpinner;
     private javax.swing.JPanel produtosPanel;

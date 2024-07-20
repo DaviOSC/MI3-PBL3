@@ -96,11 +96,11 @@ public class ControllerLoja {
         }
     }
 
-    public void criarPedido() throws IllegalAccessException {
+    public Pedido criarPedido() throws IllegalAccessException {
         if (usuarioLogado instanceof Cliente) {
-            ((Cliente) usuarioLogado).criarPedido(gerenciamentoDePedidos, estoque);
+            return ((Cliente) usuarioLogado).criarPedido(gerenciamentoDePedidos, estoque);
         } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem criar pedidos.");
+            return null;//throw new IllegalAccessException("Acesso negado: Apenas Clientes podem criar pedidos.");
         }
     }
 
@@ -138,6 +138,14 @@ public class ControllerLoja {
     {
         return ((Cliente)usuarioLogado).getPreçoTotal();
     }
+    
+    public void criarMetodoPagamento(String tipo,Pagamento pagamento)
+    {
+        ((Cliente)usuarioLogado).cadastrarPagamento(tipo, pagamento);
+    }
+    public Iterator<Map.Entry<String, Pagamento>> listarMetodosPagamento() {
+        return ((Cliente)usuarioLogado).listarMetodosPagamento();
+    }
 
     // Métodos para listar pedidos e verificar estoque (acessíveis a todos)
     public Iterator<Pedido> listarPedidos() {
@@ -155,9 +163,12 @@ public class ControllerLoja {
     public Iterator<Map.Entry<Produto, Integer>> listarProdutosEstoqueIterator() {
         return estoque.listarProdutos().entrySet().iterator();
     }
+    
 
     public void removerTipoProdutoDoEstoque(Produto produto) {
         estoque.removerTipoProduto(produto);
     }
+    
+    
         
 }

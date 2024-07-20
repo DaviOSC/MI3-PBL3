@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Cliente extends Usuario {
@@ -20,10 +21,16 @@ public class Cliente extends Usuario {
     
     public void cadastrarPagamento(String tipo, Pagamento pagamento) {
         metodosPagamentos.put(tipo, pagamento);
+        System.out.print("Cadastrado pagamento " + tipo + pagamento);
     }
+    
     
     public Pagamento getPagamento(String tipo) {
         return metodosPagamentos.get(tipo);
+    }
+    
+    public Iterator<Map.Entry<String, Pagamento>> listarMetodosPagamento() {
+        return metodosPagamentos.entrySet().iterator();
     }
 
     public boolean realizarPagamento(String tipo) {
@@ -43,8 +50,8 @@ public class Cliente extends Usuario {
     }
 
     //Criar pedido (finalizar carrinho)
-    public void criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque) throws IllegalAccessException{
-        pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
+    public Pedido criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque) throws IllegalAccessException{
+        return pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
     }
 
     public void finalizarPedido(GerenciamentoDePedidos gerenciamentoDePedidos){

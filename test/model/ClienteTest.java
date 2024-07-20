@@ -40,14 +40,14 @@ public class ClienteTest {
     }
 
     @Test
-    public void testCriarPedido() {
+    public void testCriarPedido() throws IllegalAccessException {
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
         assertNotNull(cliente.getPedido());
     }
 
     @Test
-    public void testFinalizarPedido() {
+    public void testFinalizarPedido() throws IllegalAccessException {
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
         cliente.finalizarPedido(gerenciamentoDePedidos);
@@ -55,7 +55,7 @@ public class ClienteTest {
     }
 
     @Test
-    public void testRealizarPagamentoCartaoCredito() {
+    public void testRealizarPagamentoCartaoCredito() throws IllegalAccessException {
         cliente.cadastrarPagamento("CartaoCredito", new PagamentoCartaoCredito("1234567890123456", "Cliente1", "12/24", "123"));
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
@@ -64,7 +64,7 @@ public class ClienteTest {
     }
 
     @Test
-    public void testRealizarPagamentoPayPal() {
+    public void testRealizarPagamentoPayPal() throws IllegalAccessException {
         cliente.cadastrarPagamento("PayPal", new PagamentoPayPal("cliente1@example.com"));
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
@@ -73,7 +73,7 @@ public class ClienteTest {
     }
 
     @Test
-    public void testRealizarPagamentoTransferenciaBancaria() {
+    public void testRealizarPagamentoTransferenciaBancaria() throws IllegalAccessException {
         cliente.cadastrarPagamento("TransferenciaBancaria", new PagamentoTransferenciaBancaria("12345", "Banco1"));
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);

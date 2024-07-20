@@ -47,4 +47,9 @@ public class PagamentoCartaoCredito extends Pagamento
     {
         return codigoSeguranca;
     }
+    @Override 
+    public String toString()
+    {
+        return "Cartão " + numeroCartao+ " " + dataValidade;
+    }
 }

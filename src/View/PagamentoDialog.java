@@ -1,17 +1,23 @@
 package View;
 
 import java.awt.Component;
+import java.util.Iterator;
+import java.util.Map;
 import javax.swing.*;
+import model.Pagamento;
 
 
-public class Login extends JDialog
+public class PagamentoDialog extends JDialog
 {
     private MainJFrame mainframe;
 
-    public Login(MainJFrame mainframe)
+    public PagamentoDialog(MainJFrame mainframe, Double valor)
     {
         this.mainframe = mainframe;
         initComponents();
+        lblValor.setText("Valor: R$" + valor);
+        setSelection();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -21,51 +27,48 @@ public class Login extends JDialog
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        lblValor1 = new javax.swing.JLabel();
+        lblValor = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
-        loginField = new javax.swing.JTextField();
-        lblSenha = new javax.swing.JLabel();
-        senhaField = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
-        btnEntrar = new javax.swing.JButton();
+        cbPagamento = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        btnConfirmar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnCadastrarM = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         setModal(true);
-        setPreferredSize(new java.awt.Dimension(400, 450));
         setResizable(false);
 
         jPanel.setBackground(new java.awt.Color(255, 255, 255));
         jPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setLayout(new java.awt.GridLayout(5, 0));
+        jPanel1.setLayout(new java.awt.GridLayout(6, 0));
 
-        lblLogin.setText("Login:");
+        lblValor1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblValor1.setText("Pagamento");
+        jPanel1.add(lblValor1);
+
+        lblValor.setText("Valor: ");
+        jPanel1.add(lblValor);
+
+        lblLogin.setText("Selecione o Método de Pagamento");
         jPanel1.add(lblLogin);
-        jPanel1.add(loginField);
 
-        lblSenha.setText("Senha:");
-        jPanel1.add(lblSenha);
-        jPanel1.add(senhaField);
+        jPanel1.add(cbPagamento);
+        jPanel1.add(jLabel2);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
-
-        btnEntrar.setText("Entrar");
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEntrar);
-
-        jPanel1.add(jPanel3);
+        jPanel1.add(btnConfirmar);
 
         jPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -105,7 +108,7 @@ public class Login extends JDialog
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 209, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         jPanel.add(jPanel6, java.awt.BorderLayout.LINE_END);
@@ -118,80 +121,53 @@ public class Login extends JDialog
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 209, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         jPanel.add(jPanel7, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(jPanel, java.awt.BorderLayout.CENTER);
-
-        btnCadastrarM.setText("Menu");
-
-        jMenuItem1.setText("Carregar Dados");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        btnCadastrarM.add(jMenuItem1);
-
-        jMenuItem2.setText("Cadastrar Usuário");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        btnCadastrarM.add(jMenuItem2);
-
-        jMenuBar1.add(btnCadastrarM);
-
         setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        try
-        {
-            mainframe.fazerLogin(loginField.getText(), new String(senhaField.getPassword()));
-            JOptionPane.showMessageDialog(null, "Usuário Logado", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            mainframe.setVisible(true);
-            dispose();
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        try {
+            mainframe.facade.criarPedido();
+            JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalAccessException e) {
+            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+    public void setSelection()
+    {
+        DefaultComboBoxModel<Pagamento> modelPagamento = new DefaultComboBoxModel<>();
+
+        Iterator<Map.Entry<String,Pagamento>> iterator = mainframe.getFacade().listarMetodosPagamento();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Pagamento> entrada = iterator.next();
+            modelPagamento.addElement(entrada.getValue());  
 
         }
-        catch (IllegalArgumentException  | IllegalAccessException e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }      
-    }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        mainframe.carregarArquivo();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        dispose();    
-        new Cadastro(mainframe).setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-   
+        cbPagamento.setModel(modelPagamento);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnCadastrarM;
-    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<Pagamento> cbPagamento;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JTextField loginField;
-    private javax.swing.JPasswordField senhaField;
+    private javax.swing.JLabel lblValor;
+    private javax.swing.JLabel lblValor1;
     // End of variables declaration//GEN-END:variables
 }

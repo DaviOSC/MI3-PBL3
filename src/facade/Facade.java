@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.Map;
+import model.Pagamento;
 import model.Pedido;
 import model.Produto;
 import model.Usuario;
@@ -37,8 +38,8 @@ public class Facade {
         controller.removerProdutoDoCarrinho(produto, quantidade);
     }
 
-    public void criarPedido() throws IllegalAccessException {
-        controller.criarPedido();
+    public Pedido criarPedido() throws IllegalAccessException {
+        return controller.criarPedido();
     }
 
     public void finalizarPedido() {
@@ -113,6 +114,14 @@ public class Facade {
     public Usuario cadastrarUsuario(String tipo, String nome, String senha) throws IllegalArgumentException , IllegalAccessException
     {
         return controller.cadastrarUsuario(tipo, nome, senha);
+    }
+    public void criarMetodoPagamento(String tipo, Pagamento pagamento)
+    {
+        controller.criarMetodoPagamento(tipo, pagamento);
+    }
+    
+    public Iterator<Map.Entry<String, Pagamento>> listarMetodosPagamento() {
+        return controller.listarMetodosPagamento();
     }
 }
 

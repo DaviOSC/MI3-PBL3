@@ -29,7 +29,6 @@ public class Cadastro extends JDialog {
         rbComprador = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -37,6 +36,7 @@ public class Cadastro extends JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        btnLoginM = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro");
@@ -79,14 +79,6 @@ public class Cadastro extends JDialog {
             }
         });
         jPanel4.add(btnCadastrar);
-
-        btnLogin.setText("Fazer Login");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnLogin);
 
         jPanel2.add(jPanel4);
 
@@ -154,7 +146,7 @@ public class Cadastro extends JDialog {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Menu");
 
         jMenuItem1.setText("Carregar Dados");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +155,14 @@ public class Cadastro extends JDialog {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        btnLoginM.setText("Fazer Login");
+        btnLoginM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginMActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnLoginM);
 
         jMenuBar1.add(jMenu1);
 
@@ -199,19 +199,19 @@ public class Cadastro extends JDialog {
             }              
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-    //metodo chamado ao pressionar o botão de logar
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        dispose();    
-        new Login(mainframe).setVisible(true);
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         mainframe.carregarArquivo();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnLoginMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginMActionPerformed
+        dispose();    
+        new Login(mainframe).setVisible(true);
+    }//GEN-LAST:event_btnLoginMActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JMenuItem btnLoginM;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

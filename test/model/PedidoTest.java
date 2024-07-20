@@ -39,7 +39,8 @@ public class PedidoTest {
 
     @Test
     public void testCriarPedido() {
-        Pedido pedido1 = new Pedido(carrinho1, estoque);
+        Cliente user = new Cliente("Teste", "senha");
+        Pedido pedido1 = new Pedido(carrinho1, user);
 
         // Verifica se o pedido foi criado corretamente
         assertNotNull(pedido1);
@@ -68,8 +69,9 @@ public class PedidoTest {
 
     @Test
     public void testCriarDoisPedidosAoMesmoTempo() {
-        Pedido pedido1 = new Pedido(carrinho1, estoque);
-        Pedido pedido2 = new Pedido(carrinho2, estoque);
+        Cliente user = new Cliente("Teste", "senha");
+        Pedido pedido1 = new Pedido(carrinho1, user);
+        Pedido pedido2 = new Pedido(carrinho2, user);
 
         // Verifica se os pedidos foram criados corretamente
         assertNotNull(pedido1);
