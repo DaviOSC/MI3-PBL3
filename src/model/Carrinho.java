@@ -8,24 +8,19 @@ public class Carrinho
 {
     private Map<Produto, Integer> produtosNoCarrinho;
 
-    
     public Carrinho()
     {
         produtosNoCarrinho = new HashMap<>();
     }
     
-    public void adicionarProduto(Estoque estoque, Produto produto, int quantidade) {
-        System.out.print(this);
+    public void adicionarProduto(Estoque estoque, Produto produto, int quantidade) throws IllegalArgumentException {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
         
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
-        System.out.print("\nQuant em estoque "+quantidadeEmEstoque);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
-        System.out.print("\nQuant no carrinho "+quantidadeNoCarrinho);
-        System.out.print("\nQuant em estoque"+quantidade);
-        System.out.print("\n quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade"+ (quantidadeEmEstoque >= quantidadeNoCarrinho + quantidade)+"\n");
+       
         if (quantidadeEmEstoque >= quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
         } else {
@@ -83,10 +78,10 @@ public class Carrinho
         return precoTotal;
     }
 
-
     public Map<Produto, Integer> listaProdutos()
     {
         return this.produtosNoCarrinho;
     }
+
 }
     

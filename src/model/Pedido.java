@@ -16,12 +16,15 @@ public class Pedido
     //Fazer um retorno em Carinho para retonar valor total por produto.
     private double precoTotal;
     private int estado;
+    private Cliente cliente;
+    private Pagamento pagamento;
 
-    public Pedido(Carrinho carrinho, Estoque estoque) {
+    public Pedido(Carrinho carrinho, Cliente cliente) {
         this.itens = carrinho.listaProdutos();
         this.precosTotaisPorProduto = new HashMap<>();
         this.precoTotal = carrinho.getPrecoTotal();
         this.estado = NOVO;
+        this.cliente = cliente;
     }
 
     // Retorna um Iterator para todos os itens do pedido
@@ -43,5 +46,17 @@ public class Pedido
     public void setEstado(int estado)
     {
         this.estado = estado;
+    }
+    public Cliente getCliente()
+    {
+        return this.cliente;
+    }
+    public void setPagamento(Pagamento pagamento)
+    {
+        this.pagamento = pagamento;
+    }
+    public Pagamento getPagamento()
+    {
+        return pagamento;
     }
 }

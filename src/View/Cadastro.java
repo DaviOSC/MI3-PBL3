@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.Component;
 import javax.swing.*;
 
 public class Cadastro extends JDialog {
@@ -11,38 +10,67 @@ public class Cadastro extends JDialog {
     {
         this.mainframe = mainframe;
         initComponents();
+        rbDono.setSelected(true);
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblLogin = new javax.swing.JLabel();
         loginField = new javax.swing.JTextField();
+        lblSenha1 = new javax.swing.JLabel();
         senhaField = new javax.swing.JPasswordField();
-        lblLogn = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        rbDono = new javax.swing.JRadioButton();
+        rbComprador = new javax.swing.JRadioButton();
+        jPanel4 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        lblNome = new javax.swing.JLabel();
-        nomeField = new javax.swing.JTextField();
-        lblCPF = new javax.swing.JLabel();
-        cpfField = new javax.swing.JTextField();
-        lblEndereco = new javax.swing.JLabel();
-        enderecoField = new javax.swing.JTextField();
-        telefoneField = new javax.swing.JTextField();
-        lblTelefone = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro");
+        setMinimumSize(new java.awt.Dimension(360, 375));
         setModal(true);
+        setPreferredSize(new java.awt.Dimension(400, 450));
         setResizable(false);
 
-        jPanel.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(479, 517));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        lblLogn.setText("Login:");
+        jPanel2.setPreferredSize(new java.awt.Dimension(100, 100));
+        jPanel2.setLayout(new java.awt.GridLayout(6, 0));
 
-        lblSenha.setText("Senha:");
+        lblLogin.setText("Login:");
+        jPanel2.add(lblLogin);
+        jPanel2.add(loginField);
+
+        lblSenha1.setText("Senha:");
+        jPanel2.add(lblSenha1);
+        jPanel2.add(senhaField);
+
+        buttonGroup1.add(rbDono);
+        rbDono.setText("Dono");
+        jPanel3.add(rbDono);
+
+        buttonGroup1.add(rbComprador);
+        rbComprador.setText("Comprador");
+        jPanel3.add(rbComprador);
+
+        jPanel2.add(jPanel3);
+
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -50,6 +78,7 @@ public class Cadastro extends JDialog {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        jPanel4.add(btnCadastrar);
 
         btnLogin.setText("Fazer Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -57,126 +86,149 @@ public class Cadastro extends JDialog {
                 btnLoginActionPerformed(evt);
             }
         });
+        jPanel4.add(btnLogin);
 
-        lblNome.setText("Nome:");
+        jPanel2.add(jPanel4);
 
-        lblCPF.setText("CPF:");
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        lblEndereco.setText("Endereço:");
+        jPanel5.setPreferredSize(new java.awt.Dimension(403, 100));
 
-        lblTelefone.setText("Telefone:");
-
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addComponent(btnCadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(senhaField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLayout.createSequentialGroup()
-                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))
-                            .addComponent(nomeField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enderecoField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 146, Short.MAX_VALUE))))
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(lblLogn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCPF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEndereco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enderecoField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTelefone)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnLogin))
-                .addContainerGap(61, Short.MAX_VALUE))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(403, 100));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel6, java.awt.BorderLayout.PAGE_END);
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(100, 210));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel7, java.awt.BorderLayout.LINE_END);
+
+        jPanel8.setPreferredSize(new java.awt.Dimension(100, 210));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel8, java.awt.BorderLayout.LINE_START);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Carregar Dados");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     //metodo chamado ao pressionar o botão de cadastrar
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-       
+        if(rbComprador.isSelected())
+        {
+            try 
+            {
+                mainframe.cadastro(loginField.getText(), new String(senhaField.getPassword()),"Cliente");
+                JOptionPane.showMessageDialog(null, "Usuario "+loginField.getText()+" Cadastrado. ", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (IllegalAccessException | IllegalArgumentException e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE); 
+            }
+            
+        }
+        else if(rbDono.isSelected())
+        {
+            try 
+            {
+                mainframe.cadastro(loginField.getText(), new String(senhaField.getPassword()),"Dono");
+                JOptionPane.showMessageDialog(null, "Usuario "+loginField.getText()+" Cadastrado. ", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (IllegalAccessException | IllegalArgumentException e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE); 
+            }              
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
     //metodo chamado ao pressionar o botão de logar
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         dispose();    
         new Login(mainframe).setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
-    //limpa os campos de entrada 
-    private void limparCampos()
-    {
-        Component[] components = jPanel.getComponents();
-        for (Component component : components)
-        {
-            if (component instanceof JTextField)
-            {
-                ((JTextField) component).setText(null);
-            }
-            if (component instanceof JPasswordField)
-            {
-                ((JPasswordField) component).setText(null);
-            }
-        }
-    }
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        mainframe.carregarArquivo();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JTextField cpfField;
-    private javax.swing.JTextField enderecoField;
-    private javax.swing.JPanel jPanel;
-    private javax.swing.JLabel lblCPF;
-    private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblLogn;
-    private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblTelefone;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblSenha1;
     private javax.swing.JTextField loginField;
-    private javax.swing.JTextField nomeField;
+    private javax.swing.JRadioButton rbComprador;
+    private javax.swing.JRadioButton rbDono;
     private javax.swing.JPasswordField senhaField;
-    private javax.swing.JTextField telefoneField;
     // End of variables declaration//GEN-END:variables
 }

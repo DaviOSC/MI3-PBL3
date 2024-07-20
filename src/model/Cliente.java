@@ -15,7 +15,7 @@ public class Cliente extends Usuario {
 
     @Override
     public String getTipoUsuario() {
-        return "Comprador";
+        return "Cliente";
     }
     
     public void cadastrarPagamento(String tipo, Pagamento pagamento) {
@@ -34,9 +34,8 @@ public class Cliente extends Usuario {
         return pagamento.realizarPagamento(pedido);
     }
     
-    public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) {
+    public void adicionarProdutoAoCarrinho(Estoque estoque, Produto produto, int quantidade) throws IllegalArgumentException {
         carrinho.adicionarProduto(estoque, produto, quantidade);
-                System.out.print("ADDProdutoCARCliente \n");
     }
 
     public void removerProdutoDoCarrinho(Estoque estoque, Produto produto, int quantidade) {
@@ -44,11 +43,11 @@ public class Cliente extends Usuario {
     }
 
     //Criar pedido (finalizar carrinho)
-    public void criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
-        pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque);
+    public void criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque) throws IllegalAccessException{
+        pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
     }
 
-    public void finalizarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque){
+    public void finalizarPedido(GerenciamentoDePedidos gerenciamentoDePedidos){
         gerenciamentoDePedidos.finalizarPedido(pedido);
     }
 
@@ -66,5 +65,10 @@ public class Cliente extends Usuario {
 
     public Pedido getPedido() {
         return pedido;
+    }
+    
+    public double getPreçoTotal()
+    {
+        return carrinho.getPrecoTotal();
     }
 }

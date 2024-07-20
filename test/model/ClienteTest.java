@@ -50,7 +50,7 @@ public class ClienteTest {
     public void testFinalizarPedido() {
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
-        cliente.finalizarPedido(gerenciamentoDePedidos, estoque);
+        cliente.finalizarPedido(gerenciamentoDePedidos);
         assertEquals(Pedido.ENTREGUE, cliente.getPedido().getEstado());
     }
 

@@ -25,15 +25,21 @@ public class Estoque {
     }
 
     // Remove uma quantidade específica de um produto do estoque.
-    public void removerProduto(Produto produto, int quantidade) {
-        if (produtos.containsKey(produto)) {
+    public void removerProduto(Produto produto, int quantidade) throws IllegalArgumentException {
+        if (produtos.containsKey(produto)) 
+        {
             int quantidadeAtual = produtos.get(produto);
-            if (quantidadeAtual >= quantidade) {
-                    produtos.put(produto, quantidadeAtual - quantidade);
-            } else {
+            if (quantidadeAtual >= quantidade)
+            {
+                produtos.put(produto, quantidadeAtual - quantidade);
+            }
+            else
+            {
                 throw new IllegalArgumentException("Quantidade insuficiente em estoque");
             }
-        } else {
+        }
+        else
+        {
             throw new IllegalArgumentException("Produto não encontrado no estoque");
         }
     }

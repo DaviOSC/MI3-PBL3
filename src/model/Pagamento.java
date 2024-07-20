@@ -7,6 +7,7 @@ public abstract class Pagamento {
         if (podeRealizarPagamento(pedido)) {
             if (validarDetalhesPagamento() && processarPagamento()) {
                 pedido.setEstado(Pedido.ENVIADO);
+                pedido.setPagamento(this);
                 return true;
             }
         }

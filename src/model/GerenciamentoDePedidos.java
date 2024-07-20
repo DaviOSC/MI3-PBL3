@@ -27,11 +27,8 @@ public class GerenciamentoDePedidos
     public static void resetInstancia() {
         instancia = null;
     }
-
-
-    public Pedido criarPedido(Carrinho carrinho, Estoque estoque)
-    {
-        
+    public Pedido criarPedido(Carrinho carrinho, Estoque estoque, Cliente cliente) throws IllegalAccessException
+    {   
         Iterator<Map.Entry<Produto, Integer>> iterator = carrinho.listarProdutos();
         while (iterator.hasNext()) {
             Map.Entry<Produto, Integer> entry = iterator.next();
@@ -40,14 +37,14 @@ public class GerenciamentoDePedidos
 
             estoque.removerProduto(produto, quantidade);
         }
-        if(carrinho.listaProdutos().size() != 0)
+        if(!carrinho.listaProdutos().isEmpty())
         {
-            Pedido pedido = new Pedido(carrinho, estoque);
+            Pedido pedido = new Pedido(carrinho, cliente);
             pedidos.add(pedido);
             return pedido;
         }
         else
-            return null;
+            throw new IllegalAccessException("Pedido não criado");
         
     }
 
@@ -59,7 +56,7 @@ public class GerenciamentoDePedidos
         }
     }
 
-    public List<Pedido> listarPedidos() {
-        return pedidos;
+    public Iterator<Pedido> listarPedidos() {
+        return pedidos.iterator();
     }
 }

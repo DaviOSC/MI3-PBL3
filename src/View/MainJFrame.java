@@ -2,9 +2,15 @@ package View;
 
 import facade.Facade;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+
 import model.*;
 
 public class MainJFrame extends javax.swing.JFrame {
@@ -23,7 +29,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel19 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btnEstoque = new javax.swing.JButton();
         btnConta = new javax.swing.JButton();
         btnPedidos = new javax.swing.JButton();
@@ -61,7 +66,7 @@ public class MainJFrame extends javax.swing.JFrame {
         pedidosPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaPedidos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -72,7 +77,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         btnProdutos = new javax.swing.JButton();
         btnCarrinho = new javax.swing.JButton();
-        btnEstoque1 = new javax.swing.JButton();
         btnConta1 = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
         mainPanel1 = new javax.swing.JPanel();
@@ -95,7 +99,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnAddProdCarrinho = new javax.swing.JButton();
         jPanel43 = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnCriarPedido = new javax.swing.JButton();
         jPanel30 = new javax.swing.JPanel();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
@@ -120,12 +124,14 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel37 = new javax.swing.JPanel();
         jPanel38 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu = new javax.swing.JMenu();
+        salvarMenuItem = new javax.swing.JMenuItem();
+        carregarMenuItem = new javax.swing.JMenuItem();
+        loginMenuItem = new javax.swing.JMenuItem();
+        cadastroMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 800));
         setPreferredSize(new java.awt.Dimension(800, 400));
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -147,7 +153,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuItensPanel.add(jPanel19);
 
-        jPanel22.setLayout(new java.awt.GridLayout(5, 0));
+        jPanel22.setLayout(new java.awt.GridLayout(4, 0));
 
         btnCadastrarProduto.setText("Novo Produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -156,14 +162,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         jPanel22.add(btnCadastrarProduto);
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel22.add(jButton1);
 
         btnEstoque.setText("Ver Estoque");
         btnEstoque.addActionListener(new java.awt.event.ActionListener() {
@@ -424,7 +422,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         estoquePanel.add(jPanel17, java.awt.BorderLayout.EAST);
@@ -437,7 +435,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         estoquePanel.add(jPanel18, java.awt.BorderLayout.WEST);
@@ -449,7 +447,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel10.setPreferredSize(new java.awt.Dimension(471, 104));
         jPanel10.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -468,9 +466,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setDragEnabled(true);
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
+        tabelaPedidos.setDragEnabled(true);
+        tabelaPedidos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tabelaPedidos);
 
         jPanel10.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -510,7 +508,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         pedidosPanel.add(jPanel8, java.awt.BorderLayout.EAST);
@@ -523,7 +521,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         pedidosPanel.add(jPanel16, java.awt.BorderLayout.WEST);
@@ -552,7 +550,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuItensPanel1.add(jPanel20);
 
-        jPanel23.setLayout(new java.awt.GridLayout(4, 0));
+        jPanel23.setLayout(new java.awt.GridLayout(3, 0));
 
         btnProdutos.setText("Produtos");
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
@@ -569,14 +567,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         jPanel23.add(btnCarrinho);
-
-        btnEstoque1.setText("Ver Estoque");
-        btnEstoque1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstoque1ActionPerformed(evt);
-            }
-        });
-        jPanel23.add(btnEstoque1);
 
         btnConta1.setText("Minha Conta");
         btnConta1.addActionListener(new java.awt.event.ActionListener() {
@@ -764,13 +754,13 @@ public class MainJFrame extends javax.swing.JFrame {
         lblTotal.setText("Total:");
         jPanel43.add(lblTotal);
 
-        jButton5.setText("Finalizar Compra");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCriarPedido.setText("Criar Pedido");
+        btnCriarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCriarPedidoActionPerformed(evt);
             }
         });
-        jPanel43.add(jButton5);
+        jPanel43.add(btnCriarPedido);
 
         jPanel42.add(jPanel43);
 
@@ -943,32 +933,46 @@ public class MainJFrame extends javax.swing.JFrame {
 
         getContentPane().add(compradorPanel, "compradorpanel");
 
-        jMenu1.setText("File");
+        jMenu.setText("File");
 
-        jMenuItem1.setText("Dono");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        salvarMenuItem.setText("Salvar Dados");
+        salvarMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                salvarMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu.add(salvarMenuItem);
 
-        jMenuItem2.setText("Comprador");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        carregarMenuItem.setText("Carregar Dados");
+        carregarMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                carregarMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu.add(carregarMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        loginMenuItem.setText("Login");
+        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu.add(loginMenuItem);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        cadastroMenuItem.setText("Cadastrar Usuario");
+        cadastroMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu.add(cadastroMenuItem);
+
+        jMenuBar1.add(jMenu);
 
         setJMenuBar(jMenuBar1);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
@@ -978,27 +982,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         changePanel("estoque");
         preencherTabelaEstoque();
-                System.out.print("AcessarEstoque \n");
-        
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         changePanel("pedidos");
+        preencherTabelaPedidos();
     }//GEN-LAST:event_btnPedidosActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Login(this).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        facade.login(new Dono("Davi", "123"));
-        changeScreen("donopanel");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        facade.login(new Cliente("Davi", "123"));
-        changeScreen("compradorpanel");
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         changePanelC("produtos1");
@@ -1009,20 +998,24 @@ public class MainJFrame extends javax.swing.JFrame {
         preencherTabelaCarrinho();
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
-    private void btnEstoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoque1ActionPerformed
-        
-    }//GEN-LAST:event_btnEstoque1ActionPerformed
-
     private void btnConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConta1ActionPerformed
         changePanelC("conta");
     }//GEN-LAST:event_btnConta1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnCriarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarPedidoActionPerformed
+        try {
+            facade.criarPedido();
+            JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalAccessException e) {
+            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnCriarPedidoActionPerformed
 
     private void criarProdutoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProdutoBtnActionPerformed
         facade.adicionarProdutoEmEstoque(criarProduto(), 0);
+        JOptionPane.showMessageDialog(null, "Produto criado no estoque", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_criarProdutoBtnActionPerformed
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
@@ -1030,10 +1023,20 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeFieldActionPerformed
 
     private void bntAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAddCarrinhoActionPerformed
- 
-        facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
-        preencherTabelaEstoque();
-        preencherTabelaCarrinho();
+        try
+        {
+           facade.adicionarProdutoAoCarrinho((Produto) tabelaEstoqueCliente.getValueAt(tabelaEstoqueCliente.getSelectedRow(), 0), 1);
+            preencherTabelaEstoque();
+            preencherTabelaCarrinho();
+            setPreco(facade.getPreçoCarrinho());
+            JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho", "Sistema", JOptionPane.INFORMATION_MESSAGE); 
+        }
+        catch (IllegalArgumentException e)
+        {
+            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+
     }//GEN-LAST:event_bntAddCarrinhoActionPerformed
 
     private void btnSubProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdEstoqueActionPerformed
@@ -1049,19 +1052,68 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnRmvProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvProdEstoqueActionPerformed
         facade.removerTipoProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0));
         preencherTabelaEstoque();
+        JOptionPane.showMessageDialog(null, "Produto removido do estoque", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_btnRmvProdEstoqueActionPerformed
 
     private void btnSubProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdCarrinhoActionPerformed
-        facade.removerProdutoDoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
-        preencherTabelaCarrinho();
-        preencherTabelaEstoque();
+        if(tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0) != null)
+            {
+                facade.removerProdutoDoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+                preencherTabelaCarrinho();
+                preencherTabelaEstoque();
+            }
+        setPreco(facade.getPreçoCarrinho());
+       
     }//GEN-LAST:event_btnSubProdCarrinhoActionPerformed
 
     private void btnAddProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdCarrinhoActionPerformed
-        facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
-        preencherTabelaCarrinho();
-        preencherTabelaEstoque();
+        try
+        {
+            facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+            preencherTabelaCarrinho();
+            preencherTabelaEstoque();
+            setPreco(facade.getPreçoCarrinho());   
+        }
+        catch (IllegalArgumentException e)
+        {
+            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAddProdCarrinhoActionPerformed
+
+    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
+        new Login(this).setVisible(true);
+    }//GEN-LAST:event_loginMenuItemActionPerformed
+
+    private void carregarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarMenuItemActionPerformed
+        carregarArquivo();
+
+    }//GEN-LAST:event_carregarMenuItemActionPerformed
+
+    private void salvarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarMenuItemActionPerformed
+        try
+        {
+            //opção para selecionar o arquivo para salvar
+            JFileChooser chooser = new JFileChooser();
+            //filtro para escolher apenas o tipo de arquivo especifico
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("pblFiles", "pbl");
+            chooser.setFileFilter(filter);
+            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            {
+                facade.salvarDados(chooser.getSelectedFile().getName());
+                JOptionPane.showMessageDialog(null, "Informações salvas.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_salvarMenuItemActionPerformed
+
+    private void cadastroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMenuItemActionPerformed
+        new Cadastro(this).setVisible(true);
+    }//GEN-LAST:event_cadastroMenuItemActionPerformed
     
     private void changePanel(String nome)
     {
@@ -1078,7 +1130,74 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout) getContentPane().getLayout();
         layout.show(getContentPane(), nome);
     }
-    
+    private void preencherTabelaPedidos()
+    {
+        DefaultTableModel modeloTabela = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
+
+        String[] colunas = {"Cliente", "Produtos", "Valor", "Estado", "Forma de Pagamento"};
+        modeloTabela.setColumnIdentifiers(colunas);
+
+        modeloTabela.setRowCount(0);
+        Iterator<Pedido> iterator = facade.listarPedidos();
+
+        while (iterator.hasNext()) {
+            Pedido pedido = iterator.next();
+
+            // Cria um StringBuilder para formatar a lista de itens
+            StringBuilder produtosFormatados = new StringBuilder();
+            Iterator<Map.Entry<Produto, Integer>> itensIterator = pedido.listarItens();
+
+            while (itensIterator.hasNext()) {
+                Map.Entry<Produto, Integer> entrada = itensIterator.next();
+                Produto produto = entrada.getKey();
+                int quantidade = entrada.getValue();
+                produtosFormatados.append(produto.getNome())
+                    .append(" (")
+                    .append(quantidade)
+                    .append("), ");
+            }
+
+            if (produtosFormatados.length() > 0) {
+                produtosFormatados.setLength(produtosFormatados.length() - 2);
+            }
+            
+            String estadoFormatado;
+                switch (pedido.getEstado()) {
+                case Pedido.NOVO:
+                    estadoFormatado = "Novo";
+                    break;
+                case Pedido.PROCESSANDO:
+                    estadoFormatado = "Processando";
+                    break;
+                case Pedido.ENVIADO:
+                    estadoFormatado = "Enviado";
+                    break;
+                case Pedido.ENTREGUE:
+                    estadoFormatado = "Entregue";
+                    break;
+                default:
+                    estadoFormatado = "Desconhecido";
+                    break;
+                }
+
+
+            Object[] linha = {
+                pedido.getCliente().getNome(),
+                produtosFormatados.toString(),
+                pedido.getPrecoTotal(),
+                estadoFormatado,
+                pedido.getPagamento()
+            };
+            modeloTabela.addRow(linha);
+        }
+        tabelaPedidos.setModel(modeloTabela);
+    }
+
     private void preencherTabelaCarrinho() {
  
         DefaultTableModel modeloTabela = new DefaultTableModel() {
@@ -1142,6 +1261,52 @@ public class MainJFrame extends javax.swing.JFrame {
     {
         return ProdutoFactory.criarProduto(tipoCb.getSelectedItem().toString(), nomeField.getText(), (double)precoSpinner.getValue(), descriçãoField.getText());
     }
+    
+    public void setPreco(double preco)
+    {
+        lblTotal.setText("Total:"+preco);
+    }
+    
+    public Facade getFacade()
+    {
+        return facade;
+    }
+    public void fazerLogin(String login, String senha) throws IllegalArgumentException, IllegalAccessException
+    {
+        Usuario usuario = facade.fazerLogin(login,senha);
+        jMenu.setText(usuario.getTipoUsuario());
+        setVisible(true);
+        if (usuario instanceof Dono)
+            changeScreen("donopanel");
+        else if (usuario instanceof  Cliente)
+            changeScreen("compradorpanel");
+            
+    }
+    
+    public void cadastro(String usuario, String senha, String tipo) throws IllegalAccessException, IllegalArgumentException
+    {
+        facade.cadastrarUsuario(tipo, usuario, senha);
+    }
+    
+    public void carregarArquivo()
+    {
+        try
+        {
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("pblFiles", "pbl");
+            chooser.setFileFilter(filter);
+            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            {
+                facade.carregarDados(chooser.getSelectedFile().getName());
+                System.out.print(chooser.getSelectedFile().getName());
+                JOptionPane.showMessageDialog(null, "Informações carredadas.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(IOException | ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1171,10 +1336,12 @@ public class MainJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new MainJFrame().setVisible(true);
+                MainJFrame mainframe = new MainJFrame();
+                new Login(mainframe).setVisible(true);
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntAddCarrinho;
@@ -1184,13 +1351,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCarrinho;
     private javax.swing.JButton btnConta;
     private javax.swing.JButton btnConta1;
+    private javax.swing.JButton btnCriarPedido;
     private javax.swing.JButton btnEstoque;
-    private javax.swing.JButton btnEstoque1;
     private javax.swing.JButton btnPedidos;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRmvProdEstoque;
     private javax.swing.JButton btnSubProdCarrinho;
     private javax.swing.JButton btnSubProdEstoque;
+    private javax.swing.JMenuItem cadastroMenuItem;
+    private javax.swing.JMenuItem carregarMenuItem;
     private javax.swing.JPanel carrinhoPanel;
     private javax.swing.JPanel compradorPanel;
     private javax.swing.JPanel contaPanel;
@@ -1199,8 +1368,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel donoPanel;
     private javax.swing.JPanel estoquePanel;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1210,11 +1377,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1266,10 +1430,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainPanel1;
     private javax.swing.JPanel menuItensPanel;
@@ -1279,9 +1443,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSpinner precoSpinner;
     private javax.swing.JPanel produtosPanel;
     private javax.swing.JPanel produtosPanel1;
+    private javax.swing.JMenuItem salvarMenuItem;
     private javax.swing.JTable tabelaCarrinho;
     private javax.swing.JTable tabelaEstoqueCliente;
     private javax.swing.JTable tabelaEstoqueDono;
+    private javax.swing.JTable tabelaPedidos;
     private javax.swing.JComboBox<String> tipoCb;
     // End of variables declaration//GEN-END:variables
 }
