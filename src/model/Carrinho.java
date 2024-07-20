@@ -17,6 +17,10 @@ public class Carrinho
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero");
         }
+
+        if (getQuantidadeProduto(produto) + quantidade > estoque.getQuantidadeProduto(produto)){
+            throw new IllegalArgumentException("A quantidade maior que a disponivel em estoque");
+        }
         
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
