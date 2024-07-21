@@ -65,7 +65,7 @@ public class Cadastro extends JDialog {
         jPanel3.add(rbDono);
 
         buttonGroup1.add(rbComprador);
-        rbComprador.setText("Comprador");
+        rbComprador.setText("Cliente");
         jPanel3.add(rbComprador);
 
         jPanel2.add(jPanel3);

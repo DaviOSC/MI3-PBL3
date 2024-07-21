@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Component;
 import javax.swing.*;
+import model.Cliente;
+import model.Usuario;
 
 
 public class Login extends JDialog
@@ -154,9 +156,18 @@ public class Login extends JDialog
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         try
         {
-            mainframe.fazerLogin(loginField.getText(), new String(senhaField.getPassword()));
+            Usuario usuario = mainframe.fazerLogin(loginField.getText(), new String(senhaField.getPassword()));
             JOptionPane.showMessageDialog(null, "Usuário Logado", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             mainframe.setVisible(true);
+           if (usuario instanceof Cliente)
+           {
+            mainframe.preencherListaPagamentos();
+            mainframe.preencherTabelaCarrinho();
+           }
+
+
+            mainframe.preencherTabelaEstoque();
+            mainframe.preencherTabelaPedidos();
             dispose();
 
         }

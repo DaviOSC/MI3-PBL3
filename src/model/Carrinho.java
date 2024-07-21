@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Carrinho
+public class Carrinho implements Serializable
 {
     private Map<Produto, Integer> produtosNoCarrinho;
 
@@ -64,7 +65,6 @@ public class Carrinho
              Map.Entry<Produto, Integer> entry = iterator.next();
              Produto produto = entry.getKey();
              int quantidade = entry.getValue();
-             System.out.println("Produto: " + produto.getNome() + ", Quantidade: " + quantidade);
          }
 
          // Retorna um novo iterator
@@ -85,6 +85,11 @@ public class Carrinho
     public Map<Produto, Integer> listaProdutos()
     {
         return this.produtosNoCarrinho;
+    }
+    
+    public void resetCarrinho()
+    {
+        this.produtosNoCarrinho.clear();
     }
 
 }

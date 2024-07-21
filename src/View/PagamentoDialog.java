@@ -134,12 +134,18 @@ public class PagamentoDialog extends JDialog
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        try {
-            mainframe.facade.criarPedido();
-            JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IllegalAccessException e) {
-            JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        Pagamento pagamento = (Pagamento)cbPagamento.getSelectedItem();
+        if (pagamento != null)
+        {
+            mainframe.facade.pagarPedido(pagamento);
+            JOptionPane.showMessageDialog(null, "Pagamento realizado com Sucesso.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Pagamento não realizado.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
     public void setSelection()
     {

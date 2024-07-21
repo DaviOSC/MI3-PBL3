@@ -31,7 +31,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel22 = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
         btnEstoque = new javax.swing.JButton();
-        btnConta = new javax.swing.JButton();
         btnPedidos = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -68,6 +67,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaPedidos = new javax.swing.JTable();
+        btnAvancarPedido = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -129,6 +129,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel41 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
+        lblInfoPagamentoPedido = new javax.swing.JLabel();
+        btnRealizarPagamento = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         listaPagamentos = new javax.swing.JList<>();
         jPanel35 = new javax.swing.JPanel();
@@ -165,7 +167,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuItensPanel.add(jPanel19);
 
-        jPanel22.setLayout(new java.awt.GridLayout(4, 0));
+        jPanel22.setLayout(new java.awt.GridLayout(3, 0));
 
         btnCadastrarProduto.setText("Novo Produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -182,9 +184,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         jPanel22.add(btnEstoque);
-
-        btnConta.setText("Minha Conta");
-        jPanel22.add(btnConta);
 
         btnPedidos.setText("Ver Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -484,6 +483,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel10.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
+        btnAvancarPedido.setText("Avançar estado do Pedido");
+        btnAvancarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvancarPedidoActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnAvancarPedido, java.awt.BorderLayout.PAGE_END);
+
         pedidosPanel.add(jPanel10, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -681,7 +688,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel47Layout.setVerticalGroup(
             jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         produtosPanel1.add(jPanel47, java.awt.BorderLayout.EAST);
@@ -694,7 +701,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel48Layout.setVerticalGroup(
             jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         produtosPanel1.add(jPanel48, java.awt.BorderLayout.WEST);
@@ -872,7 +879,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 288, Short.MAX_VALUE)
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -950,27 +957,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
         panelListaPag.add(jPanel41, java.awt.BorderLayout.NORTH);
 
+        jPanel28.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel28.setPreferredSize(new java.awt.Dimension(384, 150));
+        jPanel28.setLayout(new java.awt.GridLayout(2, 0));
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        lblInfoPagamentoPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblInfoPagamentoPedido.setText("Pedido");
+        jPanel28.add(lblInfoPagamentoPedido);
 
-        panelListaPag.add(jPanel28, java.awt.BorderLayout.SOUTH);
+        btnRealizarPagamento.setText("Realizar Pagamento");
+        btnRealizarPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarPagamentoActionPerformed(evt);
+            }
+        });
+        jPanel28.add(btnRealizarPagamento);
+
+        panelListaPag.add(jPanel28, java.awt.BorderLayout.PAGE_END);
 
         listaPagamentos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        listaPagamentos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane6.setViewportView(listaPagamentos);
 
         panelListaPag.add(jScrollPane6, java.awt.BorderLayout.CENTER);
@@ -1095,16 +1100,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         changePanelC("produtos1");
+        preencherTabelaEstoque(); 
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
         changePanelC("carrinho");
         preencherTabelaCarrinho();
+        preencherTabelaEstoque(); 
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     private void btnConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConta1ActionPerformed
         changePanelC("conta");
         preencherListaPagamentos();
+        verificaPedido();
         configurarPagamento((String) pagamentoCB.getSelectedItem());
 
     }//GEN-LAST:event_btnConta1ActionPerformed
@@ -1113,7 +1121,8 @@ public class MainJFrame extends javax.swing.JFrame {
         try {
 
             Pedido pedido = facade.criarPedido();
-            new PagamentoDialog(this, pedido.getPrecoTotal()).setVisible(true);
+            preencherTabelaEstoque();
+            verificaPedido();
             JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -1249,21 +1258,41 @@ public class MainJFrame extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(this, "Pagamento criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             facade.criarMetodoPagamento(tipoPagamento, pagamento);
-            System.out.print(pagamento);
+            verificaPedido();
             preencherListaPagamentos();
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 
     }//GEN-LAST:event_bntAdicionarPagamentoActionPerformed
 
-    private void changePanel(String nome) {
+    private void btnRealizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarPagamentoActionPerformed
+        new PagamentoDialog(this, facade.getPedido().getPrecoTotal()).setVisible(true);
+    }//GEN-LAST:event_btnRealizarPagamentoActionPerformed
+
+    private void btnAvancarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarPedidoActionPerformed
+        try 
+        {
+            facade.avancarPedido((Pedido) tabelaPedidos.getValueAt(tabelaPedidos.getSelectedRow(), 0));
+            preencherTabelaPedidos();
+            JOptionPane.showMessageDialog(this, "Estado Avançado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            
+        } 
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+
+    }//GEN-LAST:event_btnAvancarPedidoActionPerformed
+
+    public void changePanel(String nome) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, nome);
     }
 
-    private void changePanelC(String nome) {
+    public void changePanelC(String nome) {
         CardLayout layout = (CardLayout) mainPanel1.getLayout();
         layout.show(mainPanel1, nome);
     }
@@ -1273,7 +1302,7 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.show(getContentPane(), nome);
     }
 
-    private void preencherTabelaPedidos() {
+    public void preencherTabelaPedidos() {
         DefaultTableModel modeloTabela = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -1328,7 +1357,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
 
             Object[] linha = {
-                pedido.getCliente().getNome(),
+                pedido,
                 produtosFormatados.toString(),
                 pedido.getPrecoTotal(),
                 estadoFormatado,
@@ -1339,7 +1368,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tabelaPedidos.setModel(modeloTabela);
     }
 
-    private void preencherTabelaCarrinho() {
+    public void preencherTabelaCarrinho() {
 
         DefaultTableModel modeloTabela = new DefaultTableModel() {
             @Override
@@ -1371,7 +1400,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tabelaCarrinho.setModel(modeloTabela);
     }
 
-    private void preencherTabelaEstoque() {
+    public void preencherTabelaEstoque() {
         DefaultTableModel modeloTabela = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -1452,7 +1481,7 @@ public class MainJFrame extends javax.swing.JFrame {
         return facade;
     }
 
-    public void fazerLogin(String login, String senha) throws IllegalArgumentException, IllegalAccessException {
+    public Usuario fazerLogin(String login, String senha) throws IllegalArgumentException, IllegalAccessException {
         Usuario usuario = facade.fazerLogin(login, senha);
         jMenu.setText(usuario.getTipoUsuario() + " " + usuario.getNome());
         setVisible(true);
@@ -1461,6 +1490,7 @@ public class MainJFrame extends javax.swing.JFrame {
         } else if (usuario instanceof Cliente) {
             changeScreen("compradorpanel");
         }
+        return usuario;
     }
 
     public void cadastro(String usuario, String senha, String tipo) throws IllegalAccessException, IllegalArgumentException {
@@ -1517,12 +1547,32 @@ public class MainJFrame extends javax.swing.JFrame {
             chooser.setFileFilter(filter);
             if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 facade.carregarDados(chooser.getSelectedFile().getName());
-                System.out.print(chooser.getSelectedFile().getName());
                 JOptionPane.showMessageDialog(null, "Informações carredadas.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void verificaPedido()
+    {
+        
+        if (facade.verificaPedido() && facade.listarMetodosPagamento().hasNext())
+        {
+            lblInfoPagamentoPedido.setText("Existe um pagamento pendente.");
+            btnRealizarPagamento.setEnabled(true);
+        }
+        else if(facade.verificaPedido() && !facade.listarMetodosPagamento().hasNext())
+        {
+           lblInfoPagamentoPedido.setText("Pagamento pendente, adicione um método.");
+            btnRealizarPagamento.setEnabled(false);
+        }
+        else
+        {
+           lblInfoPagamentoPedido.setText("Não existe pagamento pentente.");
+           btnRealizarPagamento.setEnabled(false); 
+        }
+        
     }
 
     public static void main(String args[]) {
@@ -1566,14 +1616,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton bntAdicionarPagamento;
     private javax.swing.JButton btnAddProdCarrinho;
     private javax.swing.JButton btnAddProdEstoque;
+    private javax.swing.JButton btnAvancarPedido;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCarrinho;
-    private javax.swing.JButton btnConta;
     private javax.swing.JButton btnConta1;
     private javax.swing.JButton btnCriarPedido;
     private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnPedidos;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnRealizarPagamento;
     private javax.swing.JButton btnRmvProdEstoque;
     private javax.swing.JButton btnSubProdCarrinho;
     private javax.swing.JButton btnSubProdEstoque;
@@ -1649,6 +1700,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JLabel lblInfoPagamentoPedido;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JList<String> listaPagamentos;
     private javax.swing.JMenuItem loginMenuItem;

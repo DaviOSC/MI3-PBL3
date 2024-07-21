@@ -21,7 +21,6 @@ public class Cliente extends Usuario {
     
     public void cadastrarPagamento(String tipo, Pagamento pagamento) {
         metodosPagamentos.put(tipo, pagamento);
-        System.out.print("Cadastrado pagamento " + tipo + pagamento);
     }
     
     
@@ -51,20 +50,20 @@ public class Cliente extends Usuario {
 
     //Criar pedido (finalizar carrinho)
     public Pedido criarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Estoque estoque) throws IllegalAccessException{
-        return pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
+        Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
+        this.pedido = pedido;
+        this.carrinho.resetCarrinho();
+        return pedido; 
+        
+    }
+    
+    public void pagarPedido(Pagamento pagamento)
+    {
+        pedido.setPagamento(pagamento);
+        pedido.setEstado(1);
     }
 
-    public void finalizarPedido(GerenciamentoDePedidos gerenciamentoDePedidos){
-        gerenciamentoDePedidos.finalizarPedido(pedido);
-    }
 
-    public void pedidoEnviado(Pedido pedido){
-        pedido.setEstado(2);
-    }
-
-    public void pedidoEntregue(Pedido pedido){
-        pedido.setEstado(3);
-    }
 
     public Carrinho getCarrinho() {
         return carrinho;
@@ -78,4 +77,6 @@ public class Cliente extends Usuario {
     {
         return carrinho.getPrecoTotal();
     }
+    
+    
 }

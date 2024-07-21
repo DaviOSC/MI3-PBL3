@@ -59,4 +59,9 @@ public class Pedido
     {
         return pagamento;
     }
+    @Override
+    public String toString()
+    {
+        return getCliente().getNome();
+    }
 }

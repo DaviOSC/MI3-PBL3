@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 import model.*;
 
-public class ControllerLoja {
+public class ControllerLoja implements Serializable{
     private Estoque estoque;
     private GerenciamentoDePedidos gerenciamentoDePedidos;
     private transient Usuario usuarioLogado;
@@ -78,6 +79,13 @@ public class ControllerLoja {
             //throw new IllegalAccessException("Acesso negado: Apenas o Dono pode remover produtos do estoque.");
         }
     }
+    public void avancarPedido(Pedido pedido) throws IllegalArgumentException{
+        if (usuarioLogado instanceof Dono) {
+            ((Dono) usuarioLogado).avancarPedido(gerenciamentoDePedidos, pedido);
+        } else {
+            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem finalizar pedidos.");
+        }
+    }
 
     // Métodos para Cliente
     public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) throws IllegalArgumentException{
@@ -104,29 +112,6 @@ public class ControllerLoja {
         }
     }
 
-    public void finalizarPedido() {
-        if (usuarioLogado instanceof Cliente) {
-            ((Cliente) usuarioLogado).finalizarPedido(gerenciamentoDePedidos);
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem finalizar pedidos.");
-        }
-    }
-
-    public void pedidoEnviado() {
-        if (usuarioLogado instanceof Cliente) {
-            ((Cliente) usuarioLogado).pedidoEnviado(((Cliente) usuarioLogado).getPedido());
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem enviar pedidos.");
-        }
-    }
-
-    public void pedidoEntregue() {
-        if (usuarioLogado instanceof Cliente) {
-            ((Cliente) usuarioLogado).pedidoEntregue(((Cliente) usuarioLogado).getPedido());
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem confirmar entrega de pedidos.");
-        }
-    }
     public Iterator<Map.Entry<Produto, Integer>> listarProdutosCarrinhoIterator() {
         if (usuarioLogado instanceof Cliente) {
             return ((Cliente) usuarioLogado).getCarrinho().listarProdutos();
@@ -145,6 +130,20 @@ public class ControllerLoja {
     }
     public Iterator<Map.Entry<String, Pagamento>> listarMetodosPagamento() {
         return ((Cliente)usuarioLogado).listarMetodosPagamento();
+    }
+    public Pedido getPedido()
+    {
+        return ((Cliente)usuarioLogado).getPedido();
+    }
+    
+    public void pagarPedido(Pagamento pagamento)
+    {
+        ((Cliente)usuarioLogado).pagarPedido(pagamento);
+    }
+    
+    public boolean verificaPedido()
+    {
+        return ((Cliente)usuarioLogado).getPedido() != null && ((Cliente)usuarioLogado).getPedido().getPagamento() == null;
     }
 
     // Métodos para listar pedidos e verificar estoque (acessíveis a todos)

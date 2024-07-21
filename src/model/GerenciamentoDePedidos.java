@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class GerenciamentoDePedidos
+public class GerenciamentoDePedidos implements Serializable
 {
     private static GerenciamentoDePedidos instancia;
     private List<Pedido> pedidos;
@@ -48,11 +49,21 @@ public class GerenciamentoDePedidos
         
     }
 
-    public void finalizarPedido(Pedido pedido) {
-        if (pedido.getEstado() != Pedido.ENTREGUE) {
+    public void avancarPedido(Pedido pedido) throws IllegalArgumentException{
+        switch (pedido.getEstado())
+        {
+        case Pedido.NOVO:
+            throw new IllegalArgumentException("Pagamento pendente.");
+        case Pedido.PROCESSANDO:
+            pedido.setEstado(Pedido.ENVIADO);
+            break;
+        case Pedido.ENVIADO:
             pedido.setEstado(Pedido.ENTREGUE);
-        } else {
-            throw new IllegalArgumentException("Pedido já está finalizado");
+            break;
+        case Pedido.ENTREGUE:
+            throw new IllegalArgumentException("Pedido já está finalizado.");
+        default:
+            throw new IllegalArgumentException("Estado desconhecido.");
         }
     }
 

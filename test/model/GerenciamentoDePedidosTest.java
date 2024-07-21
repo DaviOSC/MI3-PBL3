@@ -101,7 +101,7 @@ public class GerenciamentoDePedidosTest {
         carrinho.adicionarProduto(estoque, produto2, 3);
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
-        gerenciamentoDePedidos.finalizarPedido(pedido);
+        gerenciamentoDePedidos.avancarPedido(pedido);
 
         assertEquals(Pedido.ENTREGUE, pedido.getEstado());
     }
@@ -114,7 +114,7 @@ public class GerenciamentoDePedidosTest {
         carrinho.adicionarProduto(estoque, produto2, 3);
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
-        gerenciamentoDePedidos.finalizarPedido(pedido);
-        gerenciamentoDePedidos.finalizarPedido(pedido); // Deve lançar exceção
+        gerenciamentoDePedidos.avancarPedido(pedido);
+        gerenciamentoDePedidos.avancarPedido(pedido); // Deve lançar exceção
     }
 }

@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Pagamento {
+import java.io.Serializable;
+
+public abstract class Pagamento implements Serializable{
 
     // Método template para realizar o pagamento
     public final boolean realizarPagamento(Pedido pedido) {

@@ -50,6 +50,6 @@ public class PagamentoCartaoCredito extends Pagamento
     @Override 
     public String toString()
     {
-        return "Cartão " + numeroCartao+ " " + dataValidade;
+        return "Cartão - " + numeroCartao+ " " + dataValidade;
     }
 }

@@ -37,6 +37,6 @@ public class PagamentoTransferenciaBancaria extends Pagamento
     @Override 
     public String toString()
     {
-        return "Conta " + contaBancaria;
+        return "Conta - " + contaBancaria;
     }
 }

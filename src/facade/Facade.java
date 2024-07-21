@@ -42,16 +42,9 @@ public class Facade {
         return controller.criarPedido();
     }
 
-    public void finalizarPedido() {
-        controller.finalizarPedido();
-    }
-
-    public void pedidoEnviado() {
-        controller.pedidoEnviado();
-    }
-
-    public void pedidoEntregue() {
-        controller.pedidoEntregue();
+    public void avancarPedido(Pedido pedido) throws IllegalArgumentException {
+        controller.avancarPedido(pedido);
+        
     }
 
     public Iterator<Pedido> listarPedidos() {
@@ -122,6 +115,20 @@ public class Facade {
     
     public Iterator<Map.Entry<String, Pagamento>> listarMetodosPagamento() {
         return controller.listarMetodosPagamento();
+    }
+    
+    public void pagarPedido(Pagamento pagamento)
+    {
+        controller.pagarPedido(pagamento);
+    }
+    public Pedido getPedido()
+    {
+        return controller.getPedido();
+    }
+    
+    public boolean verificaPedido()
+    {
+        return controller.verificaPedido();
     }
 }
 

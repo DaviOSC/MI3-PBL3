@@ -17,5 +17,10 @@ public class Dono extends Usuario {
     public void removerProdutoDoEstoque(Estoque estoque, Produto produto, int quantidade) throws IllegalArgumentException{
         estoque.removerProduto(produto, quantidade);
     }
+    
+    
+    public void avancarPedido(GerenciamentoDePedidos gerenciamentoDePedidos, Pedido pedido){
+        gerenciamentoDePedidos.avancarPedido(pedido);
+    }
     //listar produtos e prdidos
 }

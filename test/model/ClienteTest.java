@@ -50,7 +50,7 @@ public class ClienteTest {
     public void testFinalizarPedido() throws IllegalAccessException {
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
-        cliente.finalizarPedido(gerenciamentoDePedidos);
+        cliente.avancarPedido(gerenciamentoDePedidos);
         assertEquals(Pedido.ENTREGUE, cliente.getPedido().getEstado());
     }
 

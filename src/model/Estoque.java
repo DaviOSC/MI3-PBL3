@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Estoque {
+public class Estoque implements Serializable{
     private static Estoque instancia;
     private Map<Produto, Integer> produtos;
 
