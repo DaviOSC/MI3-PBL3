@@ -38,12 +38,17 @@ public class Cadastro extends JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         btnLoginM = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cadastro");
         setMinimumSize(new java.awt.Dimension(360, 375));
         setModal(true);
         setPreferredSize(new java.awt.Dimension(400, 450));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(479, 517));
@@ -208,6 +213,17 @@ public class Cadastro extends JDialog {
         dispose();    
         new Login(mainframe).setVisible(true);
     }//GEN-LAST:event_btnLoginMActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(mainframe.isVisible())
+        {
+            dispose();
+        }
+        else
+        {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowClosing
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
