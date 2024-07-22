@@ -17,6 +17,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     Facade facade = new Facade();
 
+
     public MainJFrame() {
         initComponents();
     }
@@ -78,10 +79,10 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         btnProdutos = new javax.swing.JButton();
         btnCarrinho = new javax.swing.JButton();
-        btnConta1 = new javax.swing.JButton();
+        btnConta = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
-        mainPanel1 = new javax.swing.JPanel();
-        produtosPanel1 = new javax.swing.JPanel();
+        mainPanelCliente = new javax.swing.JPanel();
+        produtosPanelCliente = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaEstoqueCliente = new javax.swing.JTable();
@@ -169,6 +170,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel22.setLayout(new java.awt.GridLayout(3, 0));
 
+        btnCadastrarProduto.setBackground(new java.awt.Color(173, 216, 230));
         btnCadastrarProduto.setText("Novo Produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,6 +573,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel23.setLayout(new java.awt.GridLayout(3, 0));
 
+        btnProdutos.setBackground(new java.awt.Color(173, 216, 230));
         btnProdutos.setText("Produtos");
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,13 +590,13 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jPanel23.add(btnCarrinho);
 
-        btnConta1.setText("Minha Conta");
-        btnConta1.addActionListener(new java.awt.event.ActionListener() {
+        btnConta.setText("Minha Conta");
+        btnConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConta1ActionPerformed(evt);
+                btnContaActionPerformed(evt);
             }
         });
-        jPanel23.add(btnConta1);
+        jPanel23.add(btnConta);
 
         menuItensPanel1.add(jPanel23);
 
@@ -612,10 +615,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
         compradorPanel.add(menuItensPanel1, java.awt.BorderLayout.WEST);
 
-        mainPanel1.setLayout(new java.awt.CardLayout());
+        mainPanelCliente.setLayout(new java.awt.CardLayout());
 
-        produtosPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
-        produtosPanel1.setLayout(new java.awt.BorderLayout());
+        produtosPanelCliente.setPreferredSize(new java.awt.Dimension(800, 600));
+        produtosPanelCliente.setLayout(new java.awt.BorderLayout());
 
         jPanel45.setPreferredSize(new java.awt.Dimension(471, 104));
         jPanel45.setLayout(new java.awt.BorderLayout());
@@ -652,7 +655,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jPanel45.add(bntAddCarrinho, java.awt.BorderLayout.PAGE_END);
 
-        produtosPanel1.add(jPanel45, java.awt.BorderLayout.CENTER);
+        produtosPanelCliente.add(jPanel45, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -665,7 +668,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel9, java.awt.BorderLayout.SOUTH);
+        produtosPanelCliente.add(jPanel9, java.awt.BorderLayout.SOUTH);
 
         javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
         jPanel46.setLayout(jPanel46Layout);
@@ -678,7 +681,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel46, java.awt.BorderLayout.NORTH);
+        produtosPanelCliente.add(jPanel46, java.awt.BorderLayout.NORTH);
 
         javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
         jPanel47.setLayout(jPanel47Layout);
@@ -691,7 +694,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel47, java.awt.BorderLayout.EAST);
+        produtosPanelCliente.add(jPanel47, java.awt.BorderLayout.EAST);
 
         javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
         jPanel48.setLayout(jPanel48Layout);
@@ -704,9 +707,9 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        produtosPanel1.add(jPanel48, java.awt.BorderLayout.WEST);
+        produtosPanelCliente.add(jPanel48, java.awt.BorderLayout.WEST);
 
-        mainPanel1.add(produtosPanel1, "produtos1");
+        mainPanelCliente.add(produtosPanelCliente, "produtos1");
 
         carrinhoPanel.setLayout(new java.awt.BorderLayout());
 
@@ -841,7 +844,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         carrinhoPanel.add(jPanel33, java.awt.BorderLayout.WEST);
 
-        mainPanel1.add(carrinhoPanel, "carrinho");
+        mainPanelCliente.add(carrinhoPanel, "carrinho");
 
         contaPanel.setLayout(new java.awt.BorderLayout());
 
@@ -1036,9 +1039,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         contaPanel.add(jPanel38, java.awt.BorderLayout.WEST);
 
-        mainPanel1.add(contaPanel, "conta");
+        mainPanelCliente.add(contaPanel, "conta");
 
-        compradorPanel.add(mainPanel1, java.awt.BorderLayout.CENTER);
+        compradorPanel.add(mainPanelCliente, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(compradorPanel, "compradorpanel");
 
@@ -1086,36 +1089,56 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         changePanel("produtos");
+        marcaBotao(btnCadastrarProduto);
+        resetBotao(btnPedidos);
+        resetBotao(btnEstoque);
+        
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         changePanel("estoque");
         preencherTabelaEstoque();
+        marcaBotao(btnEstoque);
+        resetBotao(btnPedidos);
+        resetBotao(btnCadastrarProduto);
+        
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         changePanel("pedidos");
         preencherTabelaPedidos();
+        marcaBotao(btnPedidos);
+        resetBotao(btnCadastrarProduto);
+        resetBotao(btnEstoque);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         changePanelC("produtos1");
         preencherTabelaEstoque(); 
+        marcaBotao(btnProdutos);
+        resetBotao(btnCarrinho);
+        resetBotao(btnConta);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
         changePanelC("carrinho");
         preencherTabelaCarrinho();
         preencherTabelaEstoque(); 
+        marcaBotao(btnCarrinho);
+        resetBotao(btnProdutos);
+        resetBotao(btnConta);
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
-    private void btnConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConta1ActionPerformed
+    private void btnContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContaActionPerformed
         changePanelC("conta");
         preencherListaPagamentos();
         verificaPedido();
         configurarPagamento((String) pagamentoCB.getSelectedItem());
+        marcaBotao(btnConta);
+        resetBotao(btnProdutos);
+        resetBotao(btnCarrinho);
 
-    }//GEN-LAST:event_btnConta1ActionPerformed
+    }//GEN-LAST:event_btnContaActionPerformed
 
     private void btnCriarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarPedidoActionPerformed
         try {
@@ -1228,39 +1251,18 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void bntAdicionarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAdicionarPagamentoActionPerformed
         String tipoPagamento = (String) pagamentoCB.getSelectedItem();
-        Pagamento pagamento = null;
         try {
-            switch (tipoPagamento) {
-                case "Cartao de Credito":
-                    pagamento = PagamentosFactory.criarPagamento(
-                            tipoPagamento,
-                            pagamentoTxt1.getText(),
-                            pagamentoTxt2.getText(),
-                            pagamentoTxt3.getText(),
-                            pagamentoTxt4.getText()
-                    );
-                    break;
-                case "PayPal":
-                    pagamento = PagamentosFactory.criarPagamento(
-                            tipoPagamento,
-                            pagamentoTxt1.getText()
-                    );
-                    break;
-                case "Transferencia Bancaria":
-                    pagamento = PagamentosFactory.criarPagamento(
-                            tipoPagamento,
-                            pagamentoTxt1.getText(),
-                            pagamentoTxt2.getText()
-                    );
-                    break;
-                default:
-                    throw new IllegalArgumentException("Tipo de pagamento não suportado: " + tipoPagamento);
-            }
+            Pagamento pagamento = PagamentosFactory.criarPagamento(
+            tipoPagamento,
+            pagamentoTxt1.getText(),
+            pagamentoTxt2.getText(),
+            pagamentoTxt3.getText(),
+            pagamentoTxt4.getText());
             JOptionPane.showMessageDialog(this, "Pagamento criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             facade.criarMetodoPagamento(tipoPagamento, pagamento);
             verificaPedido();
             preencherListaPagamentos();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e ) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -1293,15 +1295,24 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public void changePanelC(String nome) {
-        CardLayout layout = (CardLayout) mainPanel1.getLayout();
-        layout.show(mainPanel1, nome);
+        CardLayout layout = (CardLayout) mainPanelCliente.getLayout();
+        layout.show(mainPanelCliente, nome);
     }
 
     public void changeScreen(String nome) {
         CardLayout layout = (CardLayout) getContentPane().getLayout();
         layout.show(getContentPane(), nome);
     }
-
+    
+    public void marcaBotao(JButton botao)
+    {
+        botao.setBackground(new Color(173, 216, 230));
+    }
+    
+    public void resetBotao(JButton botao)
+    {
+        botao.setBackground(new Color(214, 217, 223));
+    }
     public void preencherTabelaPedidos() {
         DefaultTableModel modeloTabela = new DefaultTableModel() {
             @Override
@@ -1606,6 +1617,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
                 MainJFrame mainframe = new MainJFrame();
                 new Login(mainframe).setVisible(true);
+                
             }
         });
     }
@@ -1619,7 +1631,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAvancarPedido;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCarrinho;
-    private javax.swing.JButton btnConta1;
+    private javax.swing.JButton btnConta;
     private javax.swing.JButton btnCriarPedido;
     private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnPedidos;
@@ -1705,7 +1717,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> listaPagamentos;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JPanel mainPanel1;
+    private javax.swing.JPanel mainPanelCliente;
     private javax.swing.JPanel menuItensPanel;
     private javax.swing.JPanel menuItensPanel1;
     private javax.swing.JTextField nomeField;
@@ -1723,7 +1735,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pedidosPanel;
     private javax.swing.JSpinner precoSpinner;
     private javax.swing.JPanel produtosPanel;
-    private javax.swing.JPanel produtosPanel1;
+    private javax.swing.JPanel produtosPanelCliente;
     private javax.swing.JMenuItem salvarMenuItem;
     private javax.swing.JTable tabelaCarrinho;
     private javax.swing.JTable tabelaEstoqueCliente;
