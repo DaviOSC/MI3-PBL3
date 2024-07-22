@@ -117,9 +117,9 @@ public class Facade {
         return controller.listarMetodosPagamento();
     }
     
-    public void pagarPedido(Pagamento pagamento)
+    public boolean pagarPedido(Pagamento pagamento)
     {
-        controller.pagarPedido(pagamento);
+        return controller.pagarPedido(pagamento);
     }
     public Pedido getPedido()
     {

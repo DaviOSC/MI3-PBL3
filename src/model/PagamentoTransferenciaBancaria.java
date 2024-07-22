@@ -20,7 +20,6 @@ public class PagamentoTransferenciaBancaria extends Pagamento
     @Override
     protected boolean processarPagamento() {
         // Lógica para processar o pagamento por transferência bancária
-        System.out.println("Pagamento realizado por transferência bancária.");
         return true; // Supondo que o pagamento foi bem-sucedido
     }
     

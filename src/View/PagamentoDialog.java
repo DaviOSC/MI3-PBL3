@@ -135,10 +135,10 @@ public class PagamentoDialog extends JDialog
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Pagamento pagamento = (Pagamento)cbPagamento.getSelectedItem();
-        if (pagamento != null)
+        if (pagamento != null && mainframe.facade.pagarPedido(pagamento))
         {
-            mainframe.facade.pagarPedido(pagamento);
             JOptionPane.showMessageDialog(null, "Pagamento realizado com Sucesso.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+            mainframe.verificaPedido();
             dispose();
         }
         else
@@ -159,6 +159,8 @@ public class PagamentoDialog extends JDialog
         }
 
         cbPagamento.setModel(modelPagamento);
+        
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

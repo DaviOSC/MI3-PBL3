@@ -1178,19 +1178,25 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_bntAddCarrinhoActionPerformed
 
     private void btnSubProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubProdEstoqueActionPerformed
-        facade.removerProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
+        if((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0) != null)
+            facade.removerProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
         preencherTabelaEstoque();
     }//GEN-LAST:event_btnSubProdEstoqueActionPerformed
 
     private void btnAddProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdEstoqueActionPerformed
-        facade.adicionarProdutoEmEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
+        if((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0) != null)
+            facade.adicionarProdutoEmEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0), 1);
         preencherTabelaEstoque();
     }//GEN-LAST:event_btnAddProdEstoqueActionPerformed
 
     private void btnRmvProdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvProdEstoqueActionPerformed
-        facade.removerTipoProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0));
-        preencherTabelaEstoque();
-        JOptionPane.showMessageDialog(null, "Produto removido do estoque", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+        if((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0) != null)
+        {
+            facade.removerTipoProdutoDoEstoque((Produto) tabelaEstoqueDono.getValueAt(tabelaEstoqueDono.getSelectedRow(), 0));
+            preencherTabelaEstoque();
+            JOptionPane.showMessageDialog(null, "Produto removido do estoque", "Sistema", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
 
     }//GEN-LAST:event_btnRmvProdEstoqueActionPerformed
 
@@ -1206,7 +1212,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAddProdCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdCarrinhoActionPerformed
         try {
-            facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
+            if ((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0) != null)
+                facade.adicionarProdutoAoCarrinho((Produto) tabelaCarrinho.getValueAt(tabelaCarrinho.getSelectedRow(), 0), 1);
             preencherTabelaCarrinho();
             preencherTabelaEstoque();
             setPreco(facade.getPreçoCarrinho());
@@ -1329,8 +1336,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         while (iterator.hasNext()) {
             Pedido pedido = iterator.next();
-
-            // Cria um StringBuilder para formatar a lista de itens
             StringBuilder produtosFormatados = new StringBuilder();
             Iterator<Map.Entry<Produto, Integer>> itensIterator = pedido.listarItens();
 

@@ -53,17 +53,13 @@ public class Cliente extends Usuario {
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, this);
         this.pedido = pedido;
         this.carrinho.resetCarrinho();
-        return pedido; 
-        
+        return pedido;         
     }
     
-    public void pagarPedido(Pagamento pagamento)
+    public boolean pagarPedido(Pagamento pagamento)
     {
-        pedido.setPagamento(pagamento);
-        pedido.setEstado(1);
+        return pagamento.realizarPagamento(pedido);
     }
-
-
 
     public Carrinho getCarrinho() {
         return carrinho;
