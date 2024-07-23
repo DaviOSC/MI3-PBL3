@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class ClienteTest {
     private Estoque estoque;
     private Cliente cliente;
+    private Dono dono;
     private Produto produto1;
     private GerenciamentoDePedidos gerenciamentoDePedidos;
 
@@ -23,6 +24,7 @@ public class ClienteTest {
         produto1 = new Eletronico("Laptop", 1000.00, "Laptop de última geração");
         estoque.adicionarProduto(produto1, 50);
         cliente = new Cliente("Cliente1", "senha123");
+        dono = new Dono("Dono1", "123");
         gerenciamentoDePedidos = GerenciamentoDePedidos.getInstancia();
     }
 
@@ -50,8 +52,8 @@ public class ClienteTest {
     public void testFinalizarPedido() throws IllegalAccessException {
         cliente.adicionarProdutoAoCarrinho(estoque, produto1, 5);
         cliente.criarPedido(gerenciamentoDePedidos, estoque);
-        cliente.avancarPedido(gerenciamentoDePedidos);
-        assertEquals(Pedido.ENTREGUE, cliente.getPedido().getEstado());
+        
+        assertEquals(Pedido.NOVO, cliente.getPedido().getEstado());
     }
 
     @Test

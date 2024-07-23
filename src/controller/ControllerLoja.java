@@ -67,23 +67,17 @@ public class ControllerLoja implements Serializable{
     public void adicionarProdutoEmEstoque(Produto produto, int quantidade) {
         if (usuarioLogado instanceof Dono) {
             ((Dono) usuarioLogado).adicionarProdutoEmEstoque(estoque, produto, quantidade);
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas o Dono pode adicionar produtos ao estoque.");
         }
     }
 
     public void removerProdutoDoEstoque(Produto produto, int quantidade) throws IllegalArgumentException{
         if (usuarioLogado instanceof Dono) {
             ((Dono) usuarioLogado).removerProdutoDoEstoque(estoque, produto, quantidade);
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas o Dono pode remover produtos do estoque.");
         }
     }
     public void avancarPedido(Pedido pedido) throws IllegalArgumentException{
         if (usuarioLogado instanceof Dono) {
             ((Dono) usuarioLogado).avancarPedido(gerenciamentoDePedidos, pedido);
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem finalizar pedidos.");
         }
     }
 
@@ -91,16 +85,12 @@ public class ControllerLoja implements Serializable{
     public void adicionarProdutoAoCarrinho(Produto produto, int quantidade) throws IllegalArgumentException{
         if (usuarioLogado instanceof Cliente) {
             ((Cliente) usuarioLogado).adicionarProdutoAoCarrinho(estoque, produto, quantidade);
-        } else {
-            //throw new IllegalAccessException("Acesso negado: Apenas Clientes podem adicionar produtos ao carrinho.");
         }
     }
 
     public void removerProdutoDoCarrinho(Produto produto, int quantidade) {
         if (usuarioLogado instanceof Cliente) {
             ((Cliente) usuarioLogado).removerProdutoDoCarrinho(estoque,produto, quantidade);
-        } else {
-           // throw new IllegalAccessException("Acesso negado: Apenas Clientes podem remover produtos do carrinho.");
         }
     }
 
@@ -108,7 +98,7 @@ public class ControllerLoja implements Serializable{
         if (usuarioLogado instanceof Cliente) {
             return ((Cliente) usuarioLogado).criarPedido(gerenciamentoDePedidos, estoque);
         } else {
-            return null;//throw new IllegalAccessException("Acesso negado: Apenas Clientes podem criar pedidos.");
+            return null;
         }
     }
 
@@ -116,7 +106,7 @@ public class ControllerLoja implements Serializable{
         if (usuarioLogado instanceof Cliente) {
             return ((Cliente) usuarioLogado).getCarrinho().listarProdutos();
         } else {
-            return null;//throw new IllegalAccessException("Acesso negado: Apenas Clientes podem confirmar entrega de pedidos.");
+            return null;
         }   
     }
     public double getPreçoCarrinho()
@@ -136,9 +126,9 @@ public class ControllerLoja implements Serializable{
         return ((Cliente)usuarioLogado).getPedido();
     }
     
-    public boolean pagarPedido(Pagamento pagamento)
+    public void pagarPedido(Pagamento pagamento)
     {
-        return ((Cliente)usuarioLogado).pagarPedido(pagamento);
+        ((Cliente)usuarioLogado).pagarPedido(pagamento);
     }
     
     public boolean verificaPedido()

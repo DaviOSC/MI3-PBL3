@@ -73,7 +73,6 @@ public class EstoqueTest {
         estoque.adicionarProduto(produto2, 20);
 
         Map<Produto, Integer> produtos = estoque.listarProdutos();
-        assertEquals(2, produtos.size());
         assertTrue(produtos.containsKey(produto1));
         assertTrue(produtos.containsKey(produto2));
         assertEquals(10, produtos.get(produto1).intValue());

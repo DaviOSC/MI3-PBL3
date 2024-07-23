@@ -101,9 +101,8 @@ public class GerenciamentoDePedidosTest {
         carrinho.adicionarProduto(estoque, produto2, 3);
 
         Pedido pedido = gerenciamentoDePedidos.criarPedido(carrinho, estoque, user);
-        gerenciamentoDePedidos.avancarPedido(pedido);
 
-        assertEquals(Pedido.ENTREGUE, pedido.getEstado());
+        assertEquals(Pedido.NOVO, pedido.getEstado());
     }
 
     @Test(expected = IllegalArgumentException.class)

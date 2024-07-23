@@ -10,7 +10,7 @@ public class PagamentosTest {
 
     @Test
     public void testCriarPagamentoCartaoCredito() {
-        Pagamento pagamento = PagamentosFactory.criarPagamento("CartaoCredito", "1234567890123456", "João Silva", "12/25", "123");
+        Pagamento pagamento = PagamentosFactory.criarPagamento("Cartao de Credito", "1234567890123456", "João Silva", "12/25", "123");
 
         assertTrue(pagamento instanceof PagamentoCartaoCredito);
 
@@ -33,7 +33,7 @@ public class PagamentosTest {
 
     @Test
     public void testCriarPagamentoTransferenciaBancaria() {
-        Pagamento pagamento = PagamentosFactory.criarPagamento("TransferenciaBancaria", "123456789", "Banco do Brasil");
+        Pagamento pagamento = PagamentosFactory.criarPagamento("Transferencia Bancaria", "123456789", "Banco do Brasil");
 
         assertTrue(pagamento instanceof PagamentoTransferenciaBancaria);
 
