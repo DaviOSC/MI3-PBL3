@@ -59,10 +59,7 @@ public class ControllerLoja implements Serializable{
         
     }
 
-    public void logout() {
-        this.usuarioLogado = null;
-    }
-
+    
     // Métodos para Dono
     public void adicionarProdutoEmEstoque(Produto produto, int quantidade) {
         if (usuarioLogado instanceof Dono) {
@@ -126,9 +123,9 @@ public class ControllerLoja implements Serializable{
         return ((Cliente)usuarioLogado).getPedido();
     }
     
-    public void pagarPedido(Pagamento pagamento)
+    public boolean pagarPedido(Pagamento pagamento)
     {
-        ((Cliente)usuarioLogado).pagarPedido(pagamento);
+        return ((Cliente)usuarioLogado).pagarPedido(pagamento);
     }
     
     public boolean verificaPedido()
