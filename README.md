@@ -1,18 +1,48 @@
-## Getting Started
+# Gerenciamento de Loja Online
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto é um sistema de gerenciamento de loja online desenvolvido em Java. O sistema permite a gestão de produtos, carrinhos de compras e pedidos, incluindo o gerenciamento de estoque e processamento de pagamentos.
 
-## Folder Structure
+## Funcionalidades
 
-The workspace contains two folders by default, where:
+- **Gerenciamento de Produtos**: Adiciona e remove produtos do estoque.
+- **Carrinho de Compras**: Adiciona e remove produtos do carrinho, calcula o preço total e lista os produtos.
+- **Pedidos**: Cria e finaliza pedidos com base nos produtos presentes no carrinho.
+- **Pagamentos**: Suporta diferentes métodos de pagamento, incluindo cartão de crédito, PayPal e transferência bancária.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Estrutura do Projeto
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- **Classes Principais**:
+  - `Cliente`: Representa um usuário que pode adicionar produtos ao carrinho e realizar pedidos.
+  - `Carrinho`: Gerencia a adição e remoção de produtos, e calcula o preço total.
+  - `Estoque`: Controla a quantidade de produtos disponíveis.
+  - `Pedido`: Representa um pedido feito por um cliente, com o estado do pedido sendo gerenciado.
+  - `GerenciamentoDePedidos`: Coordena a criação e finalização dos pedidos.
+  - `Pagamento`: Classe abstrata para diferentes métodos de pagamento, incluindo subclasses como `PagamentoCartaoCredito`, `PagamentoPayPal`, e `PagamentoTransferenciaBancaria`.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Métodos Importantes
 
-## Dependency Management
+- **Carrinho**:
+  - `adicionarProduto(Estoque estoque, Produto produto, int quantidade)`: Adiciona um produto ao carrinho, ajustando o estoque.
+  - `removerProduto(Estoque estoque, Produto produto, int quantidade)`: Remove um produto do carrinho e ajusta o estoque.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- **GerenciamentoDePedidos**:
+  - `criarPedido(Carrinho carrinho, Estoque estoque)`: Cria um pedido e remove os produtos do estoque.
+  - `finalizarPedido(Pedido pedido)`: Finaliza um pedido, mudando seu estado para "entregue".
+
+- **Pagamento**:
+  - Subclasses como `PagamentoCartaoCredito` e `PagamentoPayPal` implementam diferentes formas de pagamento e suas respectivas validações.
+
+## Requisitos
+
+- Java 11 ou superior
+- IDE como NetBeans para desenvolvimento (opcional)
+
+## Testes
+
+O projeto inclui testes unitários para garantir a funcionalidade correta das classes principais, como `Carrinho`, `GerenciamentoDePedidos`, e suas interações com o `Estoque`.
+
+## Execução
+
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/usuario/repo.git
