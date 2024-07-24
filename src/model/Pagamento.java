@@ -8,7 +8,7 @@ public abstract class Pagamento implements Serializable{
     public final boolean realizarPagamento(Pedido pedido) {
         if (podeRealizarPagamento(pedido)) {
             if (validarDetalhesPagamento() && processarPagamento()) {
-                pedido.setEstado(Pedido.ENVIADO);
+                pedido.setEstado(Pedido.PROCESSANDO);
                 pedido.setPagamento(this);
                 return true;
             }

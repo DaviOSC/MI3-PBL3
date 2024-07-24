@@ -3,6 +3,8 @@ package facade;
 import java.util.List;
 
 import controller.ControllerLoja;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -80,24 +82,20 @@ public class Facade {
     
     public void salvarDados(String arquivo) throws IOException
     {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo)))
-        {
-            oos.writeObject(this.controller);
-            oos.close();
-        }
-        catch (IOException e)
-        {
+       try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(arquivo));
+        ObjectOutputStream oos = new ObjectOutputStream(bos)){
+            oos.writeObject(this.controller);}
+       catch (IOException e) {
             throw e;
-        }    
+        } 
     } 
     
     public void carregarDados(String arquivo) throws IOException, ClassNotFoundException
     {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo)))
-        {
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(arquivo));
+        ObjectInputStream ois = new ObjectInputStream(bis)){
             this.controller = (ControllerLoja) ois.readObject();
-            ois.close();
-        }
+            ois.close();}
         catch (IOException | ClassNotFoundException e)
         {
             throw e;

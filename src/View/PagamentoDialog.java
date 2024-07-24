@@ -40,7 +40,7 @@ public class PagamentoDialog extends JDialog
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Pagamento");
         setModal(true);
         setResizable(false);
 

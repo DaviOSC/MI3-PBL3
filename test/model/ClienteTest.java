@@ -88,7 +88,7 @@ public class ClienteTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             cliente.adicionarProdutoAoCarrinho(estoque, produto1, 100);
         });
-        assertEquals("Quantidade insuficiente em estoque", exception.getMessage());
+        assertEquals("A quantidade adicionada é maior que a disponivel em estoque", exception.getMessage());
     }
 
     @Test

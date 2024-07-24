@@ -1145,6 +1145,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             Pedido pedido = facade.criarPedido();
             preencherTabelaEstoque();
+            preencherTabelaCarrinho();
             verificaPedido();
             JOptionPane.showMessageDialog(null, "Pedido criado.", "Sistema", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessException e) {
@@ -1283,9 +1284,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnAvancarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarPedidoActionPerformed
         try 
         {
-            facade.avancarPedido((Pedido) tabelaPedidos.getValueAt(tabelaPedidos.getSelectedRow(), 0));
-            preencherTabelaPedidos();
-            JOptionPane.showMessageDialog(this, "Estado Avançado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                if ((Pedido) tabelaPedidos.getValueAt(tabelaPedidos.getSelectedRow(), 0) != null)
+            {
+                facade.avancarPedido((Pedido) tabelaPedidos.getValueAt(tabelaPedidos.getSelectedRow(), 0));
+                preencherTabelaPedidos(); 
+                JOptionPane.showMessageDialog(this, "Estado Avançado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
             
         } 
         catch (Exception e)
@@ -1321,68 +1325,51 @@ public class MainJFrame extends javax.swing.JFrame {
         botao.setBackground(new Color(214, 217, 223));
     }
     public void preencherTabelaPedidos() {
-        DefaultTableModel modeloTabela = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        String[] colunas = {"Cliente", "Produtos", "Valor", "Estado", "Forma de Pagamento"};
-        modeloTabela.setColumnIdentifiers(colunas);
-
-        modeloTabela.setRowCount(0);
-        Iterator<Pedido> iterator = facade.listarPedidos();
-
-        while (iterator.hasNext()) {
-            Pedido pedido = iterator.next();
-            StringBuilder produtosFormatados = new StringBuilder();
-            Iterator<Map.Entry<Produto, Integer>> itensIterator = pedido.listarItens();
-
-            while (itensIterator.hasNext()) {
-                Map.Entry<Produto, Integer> entrada = itensIterator.next();
-                Produto produto = entrada.getKey();
-                int quantidade = entrada.getValue();
-                produtosFormatados.append(produto.getNome())
-                        .append(" (")
-                        .append(quantidade)
-                        .append("), ");
-            }
-
-            if (produtosFormatados.length() > 0) {
-                produtosFormatados.setLength(produtosFormatados.length() - 2);
-            }
-
-            String estadoFormatado;
-            switch (pedido.getEstado()) {
-                case Pedido.NOVO:
-                    estadoFormatado = "Novo";
-                    break;
-                case Pedido.PROCESSANDO:
-                    estadoFormatado = "Processando";
-                    break;
-                case Pedido.ENVIADO:
-                    estadoFormatado = "Enviado";
-                    break;
-                case Pedido.ENTREGUE:
-                    estadoFormatado = "Entregue";
-                    break;
-                default:
-                    estadoFormatado = "Desconhecido";
-                    break;
-            }
-
-            Object[] linha = {
-                pedido,
-                produtosFormatados.toString(),
-                pedido.getPrecoTotal(),
-                estadoFormatado,
-                pedido.getPagamento()
-            };
-            modeloTabela.addRow(linha);
+    DefaultTableModel modeloTabela = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
         }
-        tabelaPedidos.setModel(modeloTabela);
+    };
+
+    String[] colunas = {"Cliente", "Valor", "Estado", "Forma de Pagamento"};
+    modeloTabela.setColumnIdentifiers(colunas);
+
+    modeloTabela.setRowCount(0);
+    Iterator<Pedido> iterator = facade.listarPedidos();
+
+    while (iterator.hasNext()) {
+        Pedido pedido = iterator.next();
+                 
+        String estadoFormatado;
+        switch (pedido.getEstado()) {
+            case Pedido.NOVO:
+                estadoFormatado = "Novo";
+                break;
+            case Pedido.PROCESSANDO:
+                estadoFormatado = "Processando";
+                break;
+            case Pedido.ENVIADO:
+                estadoFormatado = "Enviado";
+                break;
+            case Pedido.ENTREGUE:
+                estadoFormatado = "Entregue";
+                break;
+            default:
+                estadoFormatado = "Desconhecido";
+                break;
+        }
+
+        Object[] linha = {
+            pedido, // Assume que getCliente() não é nulo
+            pedido.getPrecoTotal(), // Verifique se getPrecoTotal() não é nulo
+            estadoFormatado,
+            pedido.getPagamento() // Verifique se getPagamento() não é nulo
+        };
+        modeloTabela.addRow(linha);
     }
+    tabelaPedidos.setModel(modeloTabela);
+}
 
     public void preencherTabelaCarrinho() {
 

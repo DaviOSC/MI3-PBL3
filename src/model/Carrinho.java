@@ -21,17 +21,19 @@ public class Carrinho implements Serializable
         int quantidadeEmEstoque = estoque.getQuantidadeProduto(produto);
         int quantidadeNoCarrinho = produtosNoCarrinho.getOrDefault(produto, 0);
        
-        if (quantidadeEmEstoque >= quantidade) {
+        
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("A quantidade deve ser maior que zero");
+        }else if (getQuantidadeProduto(produto) + quantidade > estoque.getQuantidadeProduto(produto)){
+            throw new IllegalArgumentException("A quantidade adicionada é maior que a disponivel em estoque");
+        }
+        else if (quantidadeEmEstoque >= quantidade) {
             produtosNoCarrinho.put(produto, quantidadeNoCarrinho + quantidade);
         } else {
             throw new IllegalArgumentException("Quantidade insuficiente em estoque");
         }
 
-        if (getQuantidadeProduto(produto) + quantidade > estoque.getQuantidadeProduto(produto)){
-            throw new IllegalArgumentException("A quantidade maior que a disponivel em estoque");
-        }else if (quantidade <= 0) {
-            throw new IllegalArgumentException("A quantidade deve ser maior que zero");
-        }
+        
     }
 
     public void removerProduto(Estoque estoque, Produto produto, int quantidade) {

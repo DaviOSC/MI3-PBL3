@@ -29,6 +29,6 @@ public class PagamentoPayPal extends Pagamento
     @Override 
     public String toString()
     {
-        return "Email - " + email;
+        return "PayPal - " + email;
     }
 }
