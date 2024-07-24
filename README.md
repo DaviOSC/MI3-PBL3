@@ -45,4 +45,5 @@ O projeto inclui testes unitários para garantir a funcionalidade correta das cl
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/usuario/repo.git
+   git clone https://github.com/DaviOSC/MI3-PBL3.git
+   
